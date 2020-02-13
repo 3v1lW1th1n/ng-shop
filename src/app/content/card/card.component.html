@@ -4,8 +4,16 @@
   </div>
   <div class="card-desc">
     <div class="card-wrap">
-      <p>{{ product.name }}</p>
-      <mat-icon class="cart-icon">add_shopping_cart</mat-icon>
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['product']"
+      >
+        {{ product.name }}
+      </a>
+      <mat-icon (click)="addProduct(product)" class="cart-icon"
+        >add_shopping_cart</mat-icon
+      >
     </div>
 
     <div class="card-desc-stars">
