@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-img">
+    <img class="card-img-tile" src="../../../../assets/img/headphones.png" />
+  </div>
+  <div class="card-desc">
+    <div class="card-wrap">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['product']"
+      >
+        {{ product.name }}
+      </a>
+      <mat-icon (click)="addProduct(product)" class="cart-icon"
+        >add_shopping_cart</mat-icon
+      >
+    </div>
+
+    <div class="card-desc-stars">
+      <div>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon class="grey-star">star_border</mat-icon>
+      </div>
+      <div class="rate">24</div>
+    </div>
+
+    <p>€ {{ product.price }}</p>
+  </div>
+</div>
