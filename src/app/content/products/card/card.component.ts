@@ -1,12 +1,13 @@
-import { IProduct } from './../../shared/services/products.service';
 import {
   Component,
   Input,
   ComponentFactoryResolver,
   Injector,
 } from '@angular/core';
-import { ModalService } from '../modal/modal.service';
+
 import { CardConfirmModalComponent } from './card-confirm-modal/card-confirm-modal.component';
+import { ModalService } from '../../../modal/modal.service';
+import { IProduct } from '@shared/services/products.service';
 
 @Component({
   selector: 'app-card',

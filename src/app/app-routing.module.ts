@@ -4,15 +4,19 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: 'product',
-        loadChildren: () =>
-          import('./content/card/one-product/one-product.module').then(
-            mod => mod.OneProductModule,
-          ),
-      },
-    ],
+    redirectTo: 'products',
+    pathMatch: 'full',
+  },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('./content/products/products.module').then(
+        mod => mod.ProductsModule,
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: 'products',
   },
 ];
 
