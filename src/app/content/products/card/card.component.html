@@ -4,11 +4,7 @@
   </div>
   <div class="card-desc">
     <div class="card-wrap">
-      <a
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        [routerLink]="['product']"
-      >
+      <a [routerLink]="[product._id]">
         {{ product.name }}
       </a>
       <mat-icon (click)="addProduct(product)" class="cart-icon"
