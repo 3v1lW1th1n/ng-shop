@@ -35,7 +35,6 @@ export class CardComponent {
       context: {
         product: { ...product },
         save: () => {
-          // this.store.dispatch(new AddProductToCart(product));
           this._modalService.close();
         },
         close: () => {
