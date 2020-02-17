@@ -1,3 +1,55 @@
-<div>
+<!-- <div>
   {{ product$ | async | json }}
+</div> -->
+<div *ngIf="product$ | async as product">
+  <div class="title">
+    <a>{{ product.name }}</a>
+  </div>
+  <div class="one-product">
+    <div class="one-product-description">
+      <img
+        class="one-product-description-img"
+        src="../../../../assets/img/headphones.png"
+      />
+      <div class="one-product-description-descr">
+        Описание
+        <p>{{ product.description }}</p>
+      </div>
+    </div>
+    <div class="one-product-block">
+      <div class="one-product-block-price">
+        € {{ product.price }}
+        <button class="one-product-block-price-btn">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </div>
+      <div class="one-product-block-comments">
+        Отзывы покупателей
+        <button class="one-product-block-comments-btn">Написать отзыв</button>
+        <div class="one-product-block-comments-review">
+          <p>Customer Name</p>
+          <div class="one-product-block-comments-review-text">
+            <div class="one-product-block-comments-review-text-stars">
+              <div>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon class="grey-star">star_border</mat-icon>
+              </div>
+            </div>
+            пока все хорошо
+            <ul class="one-product-block-comments-review-text-pluses">
+              Достоинства:
+              <li>всё отлично</li>
+            </ul>
+            <ul class="one-product-block-comments-review-text-minuses">
+              Недостатки:
+              <li>нет таких</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { IProduct } from '@shared/services/products.service';
 import { Observable } from 'rxjs';
-import { IProduct, ProductsService } from '@shared/services/products.service';
-import { ActivatedRoute } from '@angular/router';
+
 import { pluck } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-one-product',
@@ -17,3 +18,35 @@ export class OneProductComponent implements OnInit {
 
   ngOnInit(): void {}
 }
+
+// export class OneProductComponent {
+//   @Input()
+//   public product!: IProduct;
+
+//   @Input()
+//   public isOdd!: boolean;
+
+//   public constructor(
+//     private _modalService: ModalService,
+//     private _componentFactoryResolver: ComponentFactoryResolver,
+//     private _injector: Injector,
+//   ) {}
+
+//   public addProduct(product: IProduct): void {
+//     this._modalService.open({
+//       component: OneProductReviewModalComponent,
+//       resolver: this._componentFactoryResolver,
+//       injector: this._injector,
+//       context: {
+//         product: { ...product },
+//         save: () => {
+//           // this.store.dispatch(new AddProductToCart(product));
+//           this._modalService.close();
+//         },
+//         close: () => {
+//           this._modalService.close();
+//         },
+//       },
+//     });
+//   }
+// }
