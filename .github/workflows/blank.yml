@@ -23,6 +23,7 @@ jobs:
         run: |
           npm install
           npm run build -- --configuration=production --base-href /ng-shop/
+          cp ./dist/shop/index.html ./dist/shop/404.html
         env:
           CI: true
       - name: Deploy
