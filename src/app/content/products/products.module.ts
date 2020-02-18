@@ -5,9 +5,10 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { CardComponent } from './card/card.component';
 import { ProductsComponent } from './products.component';
 import { ProductsService } from './products.service';
+import { ImgUrlPipe } from './card/img-url.pipe';
 
 @NgModule({
-  declarations: [CardComponent, ProductsComponent, CardConfirmModalComponent],
+  declarations: [CardComponent, ProductsComponent, CardConfirmModalComponent, ImgUrlPipe],
   imports: [SharedModule, ProductsRoutingModule],
   providers: [ProductsService],
 })

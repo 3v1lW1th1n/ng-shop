@@ -7,6 +7,7 @@ export interface IProduct {
   description: String;
   price: number;
   status: boolean;
+  images: { url: string; source: string }[];
 }
 @Injectable()
 export class ProductsService {

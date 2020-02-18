@@ -1,6 +1,6 @@
-<div class="card">
+<!-- <div class="card">
   <div class="card-img">
-    <img class="card-img-tile" src="../../../../assets/img/headphones.png" />
+    <img class="card-img-tile" [src]="product.images | imgUrl" />
   </div>
   <div class="card-desc">
     <div class="card-wrap">
@@ -24,5 +24,37 @@
     </div>
 
     <p>€ {{ product.price }}</p>
+  </div>
+</div> -->
+
+<div class="card">
+  <div class="card-img-wrap">
+    <img
+      class="card-img-top"
+      [src]="product.images | imgUrl"
+      [alt]="product.name"
+    />
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+      <a [routerLink]="[product._id]">
+        {{ product.name }}
+      </a>
+    </h5>
+    <div class="rate">
+      <i class="icon-star checked"></i><i class="icon-star checked"></i
+      ><i class="icon-star checked"></i><i class="icon-star checked"></i
+      ><i class="icon-star"></i>
+
+      <span class="rate-amount ml-2"></span>
+    </div>
+
+    <p class="card-text price-text">
+      <strong>€ {{ product.price }}</strong>
+    </p>
+
+    <button class="product-add-to-cart" (click)="addProduct(product)">
+      Add to cart
+    </button>
   </div>
 </div>
