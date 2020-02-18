@@ -1,4 +1,3 @@
-import { ProductsService } from '@shared/services/products.service';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
@@ -35,7 +34,6 @@ export class SharedModule {
           provide: BASE_URL_TOKEN,
           useValue: environment.baseUrl,
         },
-        ProductsService,
       ],
     };
   }

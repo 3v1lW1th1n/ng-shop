@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductsService, IProduct } from '@shared/services/products.service';
+import { IProduct, ProductsService } from './products.service';
 
 @Component({
   selector: 'app-products',

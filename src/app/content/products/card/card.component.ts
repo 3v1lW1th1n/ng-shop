@@ -7,7 +7,7 @@ import {
 
 import { CardConfirmModalComponent } from './card-confirm-modal/card-confirm-modal.component';
 import { ModalService } from '../../../modal/modal.service';
-import { IProduct } from '@shared/services/products.service';
+import { IProduct } from '../products.service';
 
 @Component({
   selector: 'app-card',

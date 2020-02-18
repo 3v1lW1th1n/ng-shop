@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '@shared/services/products.service';
 import { Observable } from 'rxjs';
 
 import { pluck } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { IProduct } from '../products.service';
 
 @Component({
   selector: 'app-one-product',

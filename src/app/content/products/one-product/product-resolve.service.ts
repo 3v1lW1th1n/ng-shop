@@ -8,7 +8,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { IProduct } from '@shared/services/products.service';
+import { IProduct } from '../products.service';
 
 @Injectable()
 export class ProductResolveService implements Resolve<IProduct | null> {

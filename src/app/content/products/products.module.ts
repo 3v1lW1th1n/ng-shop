@@ -4,9 +4,11 @@ import { SharedModule } from '@shared/shared.module';
 import { ProductsRoutingModule } from './products-routing.module';
 import { CardComponent } from './card/card.component';
 import { ProductsComponent } from './products.component';
+import { ProductsService } from './products.service';
 
 @NgModule({
   declarations: [CardComponent, ProductsComponent, CardConfirmModalComponent],
   imports: [SharedModule, ProductsRoutingModule],
+  providers: [ProductsService],
 })
 export class ProductsModule {}

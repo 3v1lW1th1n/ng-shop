@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-one-product-review-modal',
@@ -10,7 +10,3 @@ export class OneProductReviewModalComponent implements OnInit {
 
   ngOnInit(): void {}
 }
-// {
-//   @Input()
-//   public product!: IProduct;
-// }
