@@ -1,16 +1,17 @@
-<!-- <div *ngIf="products$ | async as products">
-  <mat-grid-list cols="3">
-    <mat-grid-tile *ngFor="let product of products">
-      <app-card [product]="product"></app-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div> -->
 <div class="container product-list">
+  <div class="form-inline my-2 my-md-0 ml-lg-5">
+    <input
+      class="form-control mr-sm-2"
+      type="text"
+      placeholder="Search"
+      aria-label="Search"
+      #search
+    />
+    <button class="btn btn-outline-primary" (click)="getProducts(search.value)">
+      Search
+    </button>
+  </div>
   <div>
-    <h3 class="section-title">
-      Top Recommendations For You |
-      <a href="checkout.html">Your Cart</a>
-    </h3>
     <div class="row homepage-cards">
       <ng-container *ngIf="products$ | async as products">
         <ng-container *ngFor="let product of products">

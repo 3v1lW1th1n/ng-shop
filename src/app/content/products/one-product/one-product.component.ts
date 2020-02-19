@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { pluck } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { IProduct } from '../products.service';
+import { IProduct } from '../store/reducers/products.reducer';
 
 @Component({
   selector: 'app-one-product',

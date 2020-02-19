@@ -1,19 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-export interface IProduct {
-  _id: String;
-  name: String;
-  description: String;
-  price: number;
-  status: boolean;
-  images: { url: string; source: string }[];
-}
+import { IProduct } from './store/reducers/products.reducer';
+
 @Injectable()
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  public get getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`/products`);
+  public getProducts({ text }: any): Observable<IProduct[]> {
+    const query = text ? `text=${text}` : '';
+    return this.http.get<IProduct[]>(`/products?${query}`);
   }
 }

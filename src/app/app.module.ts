@@ -6,7 +6,11 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ModalModule } from './modal/modal.module';
 import { OneProductReviewModalComponent } from './content/products/one-product/one-product-review-modal/one-product-review-modal.component';
-
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from '@env/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, OneProductReviewModalComponent],
   imports: [
@@ -14,6 +18,16 @@ import { OneProductReviewModalComponent } from './content/products/one-product/o
     AppRoutingModule,
     ModalModule.forRoot(),
     SharedModule.forRoot(),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers, {
+      // metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   bootstrap: [AppComponent],
 })
