@@ -1,3 +1,4 @@
+import { ImgUrlPipe } from './pipes/img-url.pipe';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
@@ -10,12 +11,14 @@ import { environment } from 'src/environments/environment';
 import { InterceptorService } from './services/interceptor.service';
 import { BASE_URL_TOKEN } from '../config';
 @NgModule({
+  declarations: [ImgUrlPipe],
   exports: [
     CommonModule,
     MatInputModule,
     MatIconModule,
     MatGridListModule,
     HttpClientModule,
+    ImgUrlPipe,
   ],
   providers: [
     {

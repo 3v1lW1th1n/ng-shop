@@ -6,38 +6,46 @@
     <a>{{ product.name }}</a>
   </div>
   <div class="one-product">
-    <div class="one-product-description">
-      <img
-        class="one-product-description-img"
-        src="../../../../assets/img/headphones.png"
-      />
-      <!-- {{ product.images }} -->
-      <div class="one-product-description-descr">
-        Описание
-        <p>{{ product.description }}</p>
+    <div class="main">
+      <div class="main-cont">
+        <div class="main-cont-info">
+          <img
+            class="main-cont-info-img"
+            [src]="product.images | imgUrl"
+            [alt]="product.name"
+          />
+          <div class="main-cont-info-price">
+            € {{ product.price }}
+            <button class="main-cont-info-price-btn">
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="main-cont-description">
+          <div class="main-cont-description-descr">
+            <span>Описание</span>
+            <p>{{ product.description }}</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="one-product-block">
-      <div class="one-product-block-price">
-        € {{ product.price }}
-        <button class="one-product-block-price-btn">
-          <mat-icon>add_shopping_cart</mat-icon>
-        </button>
-      </div>
-      <div class="one-product-block-comments">
-        Отзывы покупателей
-        <button class="one-product-block-comments-btn">Написать отзыв</button>
-        <div class="one-product-block-comments-review">
+
+      <div class="main-comments">
+        <div class="main-comments-header">
+          <span>Отзывы покупателей</span>
+          <button class="main-comments-header-btn">
+            Написать отзыв
+          </button>
+        </div>
+
+        <div class="main-comments-review">
           <p>Customer Name</p>
-          <div class="one-product-block-comments-review-text">
-            <div class="one-product-block-comments-review-text-stars">
-              <div>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon class="grey-star">star_border</mat-icon>
-              </div>
+          <div class="main-comments-review-text">
+            <div class="main-comments-review-text-stars">
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon>star</mat-icon>
+              <mat-icon class="grey-star">star_border</mat-icon>
             </div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -46,11 +54,12 @@
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
-            <ul class="one-product-block-comments-review-text-pluses">
+
+            <ul class="main-comments-review-text-pluses">
               Достоинства:
               <li>Lorem ipsum</li>
             </ul>
-            <ul class="one-product-block-comments-review-text-minuses">
+            <ul class="main-comments-review-text-minuses">
               Недостатки:
               <li>Lorem ipsum</li>
             </ul>
