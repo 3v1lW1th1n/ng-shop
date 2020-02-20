@@ -3,11 +3,13 @@ import { ICategory } from './../../store/reducers/categories.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IProduct } from './store/reducers/products.reducer';
+import { IProduct, IProductState } from './store/reducers/products.reducer';
 import { Store } from '@ngrx/store';
 import { getProductsPending } from './store/actions/products.actions';
 import { getCategoriesPending } from 'src/app/store/actions/categories.actions';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { pluck, withLatestFrom } from 'rxjs/operators';
+import { go } from '../../store/actions/router.actions';
 
 @Component({
   selector: 'app-products',
@@ -21,26 +23,41 @@ export class ProductsComponent implements OnInit {
     text: [''],
     subcategory: [''],
   });
+
   constructor(
-    private store: Store<IStore>,
+    private store: Store<IStore & { products: IProductState }>,
     private fb: FormBuilder,
-    private router: Router,
-  ) {}
+    private activatedRoute: ActivatedRoute,
+  ) {
+  }
 
   public ngOnInit(): void {
-    console.log('Init');
+    this.activatedRoute.queryParamMap
+      .pipe(
+        pluck('params'),
+        withLatestFrom(this.categories$),
+      )
+      .subscribe((query: any) => {
+        //TODO need wait categories;
+        this.store.dispatch(getProductsPending(query));
+        this.filterForm.patchValue(query, { emitEvent: false });
+      });
     this.products$ = this.store.select('products', 'items');
-    this.store.dispatch(getProductsPending({}));
-
     this.categories$ = this.store.select('categories', 'items');
     this.store.dispatch(getCategoriesPending());
   }
 
   public getProducts(search: any): void {
-    this.store.dispatch(getProductsPending(search));
-    this.router.navigate([], {
-      queryParams: search,
-      queryParamsHandling: 'merge',
-    });
+    const validSearch = Object.entries(search).reduce((obj, [key, value]) => {
+      if (!value) {
+        return obj;
+      }
+      return { ...obj, [key]: value };
+    }, {});
+    this.store.dispatch(go({
+      path: [],
+      query: validSearch,
+      extras: {},
+    }));
   }
 }

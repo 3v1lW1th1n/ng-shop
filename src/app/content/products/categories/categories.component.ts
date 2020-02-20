@@ -25,7 +25,9 @@ export class CategoriesComponent implements ControlValueAccessor {
 
   writeValue(_id: string): void {
     const currentCategory = this.categories.find((category: ICategory) =>
-      category.subCategories.find((sub: ISubcategory) => sub._id === _id),
+      category.subCategories.find((sub: ISubcategory) => {
+        return sub._id === _id
+      }),
     );
     this.currentSubCategory = currentCategory || this.defaultValue;
   }
