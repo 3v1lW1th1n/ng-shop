@@ -7,6 +7,7 @@ import { IProduct } from './store/reducers/products.reducer';
 import { Store } from '@ngrx/store';
 import { getProductsPending } from './store/actions/products.actions';
 import { getCategoriesPending } from 'src/app/store/actions/categories.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -20,9 +21,14 @@ export class ProductsComponent implements OnInit {
     text: [''],
     subcategory: [''],
   });
-  constructor(private store: Store<IStore>, private fb: FormBuilder) {}
+  constructor(
+    private store: Store<IStore>,
+    private fb: FormBuilder,
+    private router: Router,
+  ) {}
 
   public ngOnInit(): void {
+    console.log('Init');
     this.products$ = this.store.select('products', 'items');
     this.store.dispatch(getProductsPending({}));
 
@@ -32,5 +38,9 @@ export class ProductsComponent implements OnInit {
 
   public getProducts(search: any): void {
     this.store.dispatch(getProductsPending(search));
+    this.router.navigate([], {
+      queryParams: search,
+      queryParamsHandling: 'merge',
+    });
   }
 }
