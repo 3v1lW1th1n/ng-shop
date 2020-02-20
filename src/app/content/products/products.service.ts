@@ -7,8 +7,7 @@ import { IProduct } from './store/reducers/products.reducer';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  public getProducts({ text }: any): Observable<IProduct[]> {
-    const query = text ? `text=${text}` : '';
-    return this.http.get<IProduct[]>(`/products?${query}`);
+  public getProducts(search: any): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(`/products`, { params: search });
   }
 }
