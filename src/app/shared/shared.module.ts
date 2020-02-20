@@ -10,8 +10,11 @@ import { environment } from 'src/environments/environment';
 
 import { InterceptorService } from './services/interceptor.service';
 import { BASE_URL_TOKEN } from '../config';
+import { CategoriesService } from './services/categories.service';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [ImgUrlPipe],
+  imports: [ReactiveFormsModule],
   exports: [
     CommonModule,
     MatInputModule,
@@ -19,6 +22,7 @@ import { BASE_URL_TOKEN } from '../config';
     MatGridListModule,
     HttpClientModule,
     ImgUrlPipe,
+    ReactiveFormsModule,
   ],
   providers: [
     {
@@ -33,6 +37,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
+        CategoriesService,
         {
           provide: BASE_URL_TOKEN,
           useValue: environment.baseUrl,

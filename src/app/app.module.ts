@@ -18,7 +18,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     ModalModule.forRoot(),
     SharedModule.forRoot(),
-    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     StoreModule.forRoot(reducers, {
       // metaReducers,

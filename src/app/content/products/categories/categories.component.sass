@@ -1,0 +1,54 @@
+
+li
+    margin: 5px 0
+    list-style: none
+.categories
+    position: relative
+    z-index: 1
+    margin: 0 25px
+    &-name
+        padding: .375rem .75rem
+        font-size: 1rem
+        line-height: 1.5
+        color: #495057
+        background-color: #fff
+        background-clip: padding-box
+        border: 1px solid #ced4da
+        border-radius: .25rem
+        &:hover
+            color: #fff
+            background-color: #007bff
+            border-color: #007bff
+            cursor: pointer
+
+    &-list
+        position: absolute
+        width: 400px
+        top: 40px
+        left: 0px
+        z-index: 3
+        background-color: #fff
+        max-height: 200px
+        overflow: auto
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3)
+        border-radius: .25rem
+        &-menu
+            padding: 0
+            margin: 10px 19px 5px 19px
+
+            &-category
+                border-bottom: 1px solid #ccc
+            &-subcategory
+                margin: 0
+                padding: 0
+                &:hover
+                    color: #007bff
+                    cursor: pointer
+        &-all
+            padding: 0
+            margin: 10px 19px
+            &:hover
+                color: #007bff
+                cursor: pointer
+.active
+    color: #007bff
