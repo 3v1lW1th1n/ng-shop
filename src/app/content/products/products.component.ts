@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { getProductsPending } from './store/actions/products.actions';
 import { getCategoriesPending } from 'src/app/store/actions/categories.actions';
 import { ActivatedRoute } from '@angular/router';
-import { pluck, withLatestFrom } from 'rxjs/operators';
+import { filter, pluck } from 'rxjs/operators';
 import { go } from '../../store/actions/router.actions';
 
 @Component({
@@ -35,15 +35,14 @@ export class ProductsComponent implements OnInit {
     this.activatedRoute.queryParamMap
       .pipe(
         pluck('params'),
-        withLatestFrom(this.categories$),
       )
       .subscribe((query: any) => {
         //TODO need wait categories;
         this.store.dispatch(getProductsPending(query));
-        this.filterForm.patchValue(query, { emitEvent: false });
+        this.filterForm.patchValue(query);
       });
-    this.products$ = this.store.select('products', 'items');
-    this.categories$ = this.store.select('categories', 'items');
+    this.products$ = this.store.select('products', 'items').pipe(filter<IProduct[]>(Boolean));
+    this.categories$ = this.store.select('categories', 'items').pipe(filter<ICategory[]>(Boolean));
     this.store.dispatch(getCategoriesPending());
   }
 

@@ -1,4 +1,3 @@
-import { ISubcategory } from './../../../store/reducers/categories.reducer';
 import { Component, Input } from '@angular/core';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -17,32 +16,42 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class CategoriesComponent implements ControlValueAccessor {
   @Input()
-  public categories!: ICategory[];
+  public categories: ICategory[] = [];
   public isOpen = false;
   public currentSubCategory: any;
   public defaultValue = { name: 'Все категории' };
   public onChange!: Function;
 
   writeValue(_id: string): void {
-    const currentCategory = this.categories.find((category: ICategory) =>
-      category.subCategories.find((sub: ISubcategory) => {
-        return sub._id === _id
-      }),
-    );
+    let currentCategory;
+    for (const category of this.categories) {
+      for (const subCategory of category.subCategories) {
+        if (subCategory._id === _id) {
+          currentCategory = subCategory;
+          break;
+        }
+      }
+      if (currentCategory) {
+        break;
+      }
+    }
     this.currentSubCategory = currentCategory || this.defaultValue;
   }
 
   registerOnChange(fn: Function) {
     this.onChange = fn;
   }
-  registerOnTouched() {}
+
+  registerOnTouched() {
+  }
 
   public categoryToggle() {
     this.isOpen = !this.isOpen;
   }
+
   public subCategoryToggle(subCategory: any) {
     this.currentSubCategory = subCategory;
-    this.categoryToggle();
     this.onChange(this.currentSubCategory._id);
+    this.categoryToggle();
   }
 }

@@ -25,7 +25,6 @@ export class ProductsEffects {
           return this.productsService.getProducts(search)
             .pipe(
               mergeMap((products: IProduct[]) => {
-                console.log(search)
                 return [go({
                   path: [],
                   query: search,
