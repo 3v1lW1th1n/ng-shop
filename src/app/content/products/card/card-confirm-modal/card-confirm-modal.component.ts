@@ -8,4 +8,6 @@ import { IProduct } from '../../store/reducers/products.reducer';
 export class CardConfirmModalComponent {
   @Input()
   public product!: IProduct;
+  public close!: () => void;
+  public save!: () => void;
 }

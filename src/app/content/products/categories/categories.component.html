@@ -3,7 +3,11 @@
     {{ currentSubCategory?.name }}
   </div>
   <div *ngIf="isOpen" class="categories-list">
-    <p class="categories-list-all" (click)="subCategoryToggle(defaultValue)">
+    <p
+      class="categories-list-all"
+      (click)="subCategoryToggle(defaultValue)"
+      [ngClass]="{ active: currentSubCategory === defaultValue }"
+    >
       {{ defaultValue.name }}
     </p>
     <div class="categories-list-menu" *ngFor="let category of categories">

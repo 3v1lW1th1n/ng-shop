@@ -13,8 +13,9 @@ import { environment } from '@env/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { effects } from './store/effects';
+import { CartComponent } from './content/cart/cart.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, OneProductReviewModalComponent],
+  declarations: [AppComponent, HeaderComponent, OneProductReviewModalComponent, CartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,8 +31,8 @@ import { effects } from './store/effects';
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({
-      serializer: CustomRouterSerializer
-    })
+      serializer: CustomRouterSerializer,
+    }),
   ],
   bootstrap: [AppComponent],
 })
