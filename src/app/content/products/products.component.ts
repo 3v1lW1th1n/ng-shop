@@ -28,21 +28,22 @@ export class ProductsComponent implements OnInit {
     private store: Store<IStore & { products: IProductState }>,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.activatedRoute.queryParamMap
-      .pipe(
-        pluck('params'),
-      )
+      .pipe(pluck('params'))
       .subscribe((query: any) => {
         //TODO need wait categories;
         this.store.dispatch(getProductsPending(query));
         this.filterForm.patchValue(query);
       });
-    this.products$ = this.store.select('products', 'items').pipe(filter<IProduct[]>(Boolean));
-    this.categories$ = this.store.select('categories', 'items').pipe(filter<ICategory[]>(Boolean));
+    this.products$ = this.store
+      .select('products', 'items')
+      .pipe(filter<IProduct[]>(Boolean));
+    this.categories$ = this.store
+      .select('categories', 'items')
+      .pipe(filter<ICategory[]>(Boolean));
     this.store.dispatch(getCategoriesPending());
   }
 
@@ -53,10 +54,12 @@ export class ProductsComponent implements OnInit {
       }
       return { ...obj, [key]: value };
     }, {});
-    this.store.dispatch(go({
-      path: [],
-      query: validSearch,
-      extras: {},
-    }));
+    this.store.dispatch(
+      go({
+        path: [],
+        query: validSearch,
+        extras: {},
+      }),
+    );
   }
 }
