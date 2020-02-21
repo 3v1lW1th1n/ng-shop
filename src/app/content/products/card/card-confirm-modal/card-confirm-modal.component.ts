@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../../store/reducers/products.reducer';
 @Component({
-  selector: 'app-card-confirm-modal',
+  selector: 'ng-shop-card-confirm-modal',
   templateUrl: './card-confirm-modal.component.html',
   styleUrls: ['./card-confirm-modal.component.sass'],
 })

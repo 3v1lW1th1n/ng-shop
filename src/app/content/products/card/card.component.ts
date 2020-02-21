@@ -10,7 +10,7 @@ import { ModalService } from '../../../modal/modal.service';
 import { IProduct } from '../store/reducers/products.reducer';
 
 @Component({
-  selector: 'app-card',
+  selector: 'ng-shop-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.sass'],
 })
