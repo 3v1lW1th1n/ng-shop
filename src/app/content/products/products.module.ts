@@ -10,7 +10,6 @@ import { ProductsService } from './products.service';
 import { ProductsEffects } from './store/effects/products.effect';
 import { reducer } from './store/reducers/products.reducer';
 import { reducerCategories } from 'src/app/store/reducers/categories.reducer';
-import { CategoriesEffects } from 'src/app/store/effects/categories.effect';
 import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
@@ -20,8 +19,7 @@ import { CategoriesComponent } from './categories/categories.component';
     ProductsRoutingModule,
     StoreModule.forFeature('products', reducer),
     EffectsModule.forFeature([ProductsEffects]),
-    StoreModule.forFeature('categories', reducerCategories),
-    EffectsModule.forFeature([CategoriesEffects]),
+    StoreModule.forFeature('categories', reducerCategories)
   ],
   providers: [ProductsService],
 })

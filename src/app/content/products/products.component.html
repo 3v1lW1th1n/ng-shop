@@ -9,8 +9,8 @@
         formControlName="text"
       />
     </div>
-    <app-categories
-      [categories]="categories$ | async"
+    <app-categories *ngIf="categories$ | async as categories"
+      [categories]="categories"
       formControlName="subcategory"
     ></app-categories>
     <button
