@@ -8,11 +8,21 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'cart',
+    redirectTo: 'cart',
+    pathMatch: 'full',
+  },
+  {
     path: 'products',
     loadChildren: () =>
       import('./content/products/products.module').then(
         mod => mod.ProductsModule,
       ),
+  },
+  {
+    path: 'cart',
+    loadChildren: () =>
+      import('./content/cart/cart.module').then(mod => mod.CartModule),
   },
   {
     path: '**',

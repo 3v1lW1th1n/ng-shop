@@ -13,9 +13,8 @@ import { environment } from '@env/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { effects } from './store/effects';
-import { CartComponent } from './content/cart/cart.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, OneProductReviewModalComponent, CartComponent],
+  declarations: [AppComponent, HeaderComponent, OneProductReviewModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
