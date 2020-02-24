@@ -9,7 +9,6 @@ import { ProductsComponent } from './products.component';
 import { ProductsService } from './products.service';
 import { ProductsEffects } from './store/effects/products.effect';
 import { reducer } from './store/reducers/products.reducer';
-import { reducerCategories } from 'src/app/store/reducers/categories.reducer';
 import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { CategoriesComponent } from './categories/categories.component';
     ProductsRoutingModule,
     StoreModule.forFeature('products', reducer),
     EffectsModule.forFeature([ProductsEffects]),
-    StoreModule.forFeature('categories', reducerCategories),
   ],
   entryComponents: [CardConfirmModalComponent],
   providers: [ProductsService],

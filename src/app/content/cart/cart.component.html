@@ -1,3 +1,47 @@
 <div class="container">
-  корзина
+  <div class="cart" *ngFor="let product of cart$ | async">
+    <mat-icon class="cart-cancel" (click)="removeProductFromCart(product)"
+      >cancel</mat-icon
+    >
+    <div class="cart-content">
+      <img
+        class="cart-content-img"
+        [src]="product.images | imgUrl"
+        [alt]="product.name"
+      />
+      <div class="cart-content-descript">
+        <h5>{{ product.name }}</h5>
+
+        <div class="cart-content-descript-info">
+          <p>€ {{ product.price }}</p>
+          <div class="cart-content-descript-info-counter">
+            <mat-icon
+              class="cart-content-descript-info-counter-remove"
+              (click)="decrementProductInCart(product)"
+              >remove</mat-icon
+            >
+            <input
+              class="cart-content-descript-info-counter-input"
+              type="number"
+              min="1"
+              oninput="value = Math.abs(value)"
+              (input)="quantity($event, product)"
+              value="{{ product.count }}"
+            />
+            <mat-icon
+              class="cart-content-descript-info-counter-add"
+              (click)="incrementProductInCart(product)"
+              >add</mat-icon
+            >
+          </div>
+          <div class="cart-content-descript-info-sum">
+            <span>Сумма:</span>
+            <div class="cart-content-descript-info-sum-all">
+              € {{ product.price * product.count }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

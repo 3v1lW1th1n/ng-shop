@@ -27,6 +27,7 @@ const productsReducer = createReducer(
     loading: true,
   })),
   on(getProductsSuccess, (_state: IProductState, { products }) => ({
+    ..._state,
     items: products,
     loading: false,
   })),
