@@ -3,7 +3,7 @@ import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-categories',
+  selector: 'ng-shop-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.sass'],
   providers: [
@@ -23,6 +23,7 @@ export class CategoriesComponent implements ControlValueAccessor {
   public onChange!: Function;
 
   writeValue(_id: string): void {
+    console.log(this.categories, _id)
     let currentCategory;
     for (const category of this.categories) {
       for (const subCategory of category.subCategories) {

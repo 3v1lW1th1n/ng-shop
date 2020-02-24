@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../store/reducers/products.reducer';
 
 @Component({
-  selector: 'app-one-product',
+  selector: 'ng-shop-one-product',
   templateUrl: './one-product.component.html',
   styleUrls: ['./one-product.component.sass'],
 })

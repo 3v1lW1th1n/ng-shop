@@ -9,11 +9,11 @@
         formControlName="text"
       />
     </div>
-    <app-categories
+    <ng-shop-categories
       *ngIf="categories$ | async as categories"
       [categories]="categories"
       formControlName="subcategory"
-    ></app-categories>
+    ></ng-shop-categories>
     <button
       class="btn btn-outline-primary"
       (click)="getProducts(filterForm.value)"
@@ -26,10 +26,10 @@
     <div class="row homepage-cards">
       <ng-container *ngIf="products$ | async as products">
         <ng-container *ngFor="let product of products">
-          <app-card
+          <ng-shop-card
             [product]="product"
             class="products-list-product col-md-6 col-lg-4 mb-4"
-          ></app-card>
+          ></ng-shop-card>
         </ng-container>
       </ng-container>
     </div>

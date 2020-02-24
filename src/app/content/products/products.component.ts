@@ -12,7 +12,7 @@ import { filter, pluck } from 'rxjs/operators';
 import { go } from '../../store/actions/router.actions';
 
 @Component({
-  selector: 'app-products',
+  selector: 'ng-shop-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.sass'],
 })
@@ -28,22 +28,23 @@ export class ProductsComponent implements OnInit {
     private store: Store<IStore & { products: IProductState }>,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-  ) {}
+  ) {
+  }
 
   public ngOnInit(): void {
     this.activatedRoute.queryParamMap
       .pipe(pluck('params'))
       .subscribe((query: any) => {
-        //TODO need wait categories;
         this.store.dispatch(getProductsPending(query));
         this.filterForm.patchValue(query);
       });
+    //TODO need think about async categories;
     this.products$ = this.store
       .select('products', 'items')
-      .pipe(filter<IProduct[]>(Boolean));
+      .pipe(filter<IProduct[]>((products: IProduct[]) => products && products.length > 0));
     this.categories$ = this.store
       .select('categories', 'items')
-      .pipe(filter<ICategory[]>(Boolean));
+      .pipe(filter<ICategory[]>((categories: ICategory[]) => categories && categories.length > 0));
     this.store.dispatch(getCategoriesPending());
   }
 

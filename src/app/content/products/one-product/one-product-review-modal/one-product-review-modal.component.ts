@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-one-product-review-modal',
+  selector: 'ng-shop-one-product-review-modal',
   templateUrl: './one-product-review-modal.component.html',
   styleUrls: ['./one-product-review-modal.component.sass'],
 })

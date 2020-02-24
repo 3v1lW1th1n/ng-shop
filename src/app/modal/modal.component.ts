@@ -12,7 +12,7 @@ import {
 import { ModalService } from './modal.service';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'ng-shop-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.sass'],
 })
