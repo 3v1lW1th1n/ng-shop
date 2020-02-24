@@ -1,5 +1,18 @@
-<p>Вы уверенны, что хотите добавить товар в корзину?</p>
-<div class="modal">
-  <!-- <button class="modal-button1" (click)="save()">Оставить отзыв</button>
-  <button class="modal-button2" (click)="close()">Отменить</button> -->
+<div class="feedback" [formGroup]="feedbackForm">
+  <h2 class="feedback-title">Оставить отзыв</h2>
+  <div class="feedback-inputs">
+    <ng-shop-rating formControlName="rate"></ng-shop-rating>
+    <label class="feedback-inputs-label"> Достоинства </label>
+    <input formControlName="advantages" type="text" />
+    <label class="feedback-inputs-label">Недостатки</label>
+    <input formControlName="limitations" type="text" />
+    <label class="feedback-inputs-label"> Комментарий </label>
+    <textarea formControlName="description" type="text"></textarea>
+  </div>
+  <div class="feedback-btn">
+    <button class="feedback-btn-control" (click)="save(feedbackForm.value)">
+      Оставить отзыв
+    </button>
+    <button class="feedback-btn-control" (click)="close()">Отменить</button>
+  </div>
 </div>

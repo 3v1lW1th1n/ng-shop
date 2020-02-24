@@ -11,7 +11,6 @@ import { ProductsEffects } from './store/effects/products.effect';
 import { reducer } from './store/reducers/products.reducer';
 import { reducerCategories } from 'src/app/store/reducers/categories.reducer';
 import { CategoriesComponent } from './categories/categories.component';
-
 @NgModule({
   declarations: [
     CardComponent,

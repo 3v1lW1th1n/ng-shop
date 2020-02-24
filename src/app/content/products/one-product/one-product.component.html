@@ -1,4 +1,4 @@
-<div *ngIf="product$ | async as product"  class="container">
+<div *ngIf="product$ | async as product" class="container">
   <div class="title">
     <a>{{ product.name }}</a>
   </div>
@@ -29,7 +29,7 @@
       <div class="main-comments">
         <div class="main-comments-header">
           <span>Отзывы покупателей</span>
-          <button class="main-comments-header-btn">
+          <button (click)="addFeedback()" class="main-comments-header-btn">
             Написать отзыв
           </button>
         </div>
