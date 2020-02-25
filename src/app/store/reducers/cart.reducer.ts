@@ -80,10 +80,7 @@ export function reducerCart(state: any | undefined, action: any) {
 
 export const selectProductsState = createFeatureSelector<any>('cart');
 export const { selectAll } = cartAdapter.getSelectors();
-export const selectProducts = createSelector(
-  selectProductsState,
-  selectAll, // shorthand for usersState => fromUser.selectUserIds(usersState)
-);
+export const selectProducts = createSelector(selectProductsState, selectAll);
 
 export const trueProductsCount: MemoizedSelector<any, number> = createSelector(
   selectProducts,
