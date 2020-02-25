@@ -42,19 +42,3 @@ export class CustomRouterSerializer
     return { url, queryParams, params };
   }
 }
-
-//
-// export function storageMetaReducer(reducer: ActionReducer<IStore>) {
-//   return (state: S, action: A) => {
-//     // reduce the nextState.
-//     console.log('ACTION', action);
-//     console.log('STATE', state);
-//     if (action.type === '@ngrx/store/init') {
-//       console.log('CART', localStorage.getItem('cart'));
-//     }
-//     const nextState = reducer(state, action);
-//     return nextState;
-//   };
-// }
-//
-// export const metaReducers: MetaReducer<IStore>[] = [storageMetaReducer];

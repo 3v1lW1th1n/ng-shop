@@ -1,9 +1,6 @@
 <div class="feedback" [formGroup]="feedbackForm">
   <h2 class="feedback-title">Оставить отзыв</h2>
   <div class="feedback-inputs">
-    <!-- {{ getField('description')?.errors?.requried }}
-    {{ getField('description')?.errors?.minlength | json }}
-    {{ getField('description')?.touched }} -->
     <ng-shop-rating formControlName="rate"></ng-shop-rating>
     <label class="feedback-inputs-label">
       Достоинства
