@@ -3,6 +3,9 @@
   <div class="feedback-inputs">
     <ng-shop-rating formControlName="rate"></ng-shop-rating>
     <label class="feedback-inputs-label"> Достоинства </label>
+    <!-- <div  *ngFor="feedbackForm.error" class="form-valid">
+      min lenth 10 symbols
+    </div> -->
     <input formControlName="advantages" type="text" />
     <label class="feedback-inputs-label">Недостатки</label>
     <input formControlName="limitations" type="text" />
@@ -10,7 +13,11 @@
     <textarea formControlName="description" type="text"></textarea>
   </div>
   <div class="feedback-btn">
-    <button class="feedback-btn-control" (click)="save(feedbackForm.value)">
+    <button
+      class="feedback-btn-control"
+      (click)="save(feedbackForm.value)"
+      [disabled]="feedbackForm.invalid"
+    >
       Оставить отзыв
     </button>
     <button class="feedback-btn-control" (click)="close()">Отменить</button>

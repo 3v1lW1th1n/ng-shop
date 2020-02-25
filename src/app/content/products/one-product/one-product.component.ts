@@ -41,9 +41,7 @@ export class OneProductComponent implements OnInit {
       resolver: this._componentFactoryResolver,
       injector: this._injector,
       context: {
-        // product,
         save: (value: any) => {
-          console.log(value);
           this.store.dispatch(
             createFeedbackPending({
               feedback: { product: this.productId, ...value },

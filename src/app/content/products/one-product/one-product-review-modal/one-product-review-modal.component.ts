@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ng-shop-one-product-review-modal',
@@ -17,10 +17,10 @@ export class OneProductReviewModalComponent implements OnInit {
   }
 
   public feedbackForm: FormGroup = this.fb.group({
-    advantages: [''],
-    limitations: [''],
-    description: [''],
-    rate: [''],
+    advantages: ['', [Validators.required, Validators.minLength(10)]],
+    limitations: ['', [Validators.required, Validators.minLength(10)]],
+    description: ['', [Validators.required, Validators.minLength(10)]],
+    rate: ['', [Validators.required]],
   });
   constructor(private fb: FormBuilder) {}
   public close!: () => void;

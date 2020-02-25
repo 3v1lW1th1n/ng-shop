@@ -16,9 +16,11 @@ export interface IProduct {
   _id: string;
   name: string;
   description: string;
+  feedbacks?: any;
   price: number;
   status: boolean;
   images?: any;
+  rating?: number | undefined;
 }
 const productsReducer = createReducer(
   {

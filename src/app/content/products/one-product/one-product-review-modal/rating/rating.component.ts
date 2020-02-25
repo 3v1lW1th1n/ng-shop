@@ -16,6 +16,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class RatingComponent implements ControlValueAccessor {
   public stars = [1, 2, 3, 4, 5];
   public currentRating: number = 0;
+  public coloredStar: string = '';
   public onChange!: Function;
   public highlightRaiting: number | null = null;
   writeValue(): void {}
@@ -36,10 +37,7 @@ export class RatingComponent implements ControlValueAccessor {
   }
 
   public highlight(index: number) {
-    if (!this.highlightRaiting) {
-      return index < this.currentRating;
-    }
-    if (this.highlightRaiting < this.currentRating) {
+    if (!this.highlightRaiting || this.highlightRaiting < this.currentRating) {
       return index < this.currentRating;
     }
     return index < this.highlightRaiting;
