@@ -10,6 +10,8 @@ import { ProductsService } from './products.service';
 import { ProductsEffects } from './store/effects/products.effect';
 import { reducer } from './store/reducers/products.reducer';
 import { CategoriesComponent } from './categories/categories.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselDirective } from './carousel.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { CategoriesComponent } from './categories/categories.component';
     ProductsComponent,
     CardConfirmModalComponent,
     CategoriesComponent,
+    CarouselDirective,
+    CarouselComponent,
   ],
   imports: [
     SharedModule,

@@ -20,8 +20,7 @@ import {
   styleUrls: ['./cart.component.sass'],
 })
 export class CartComponent {
-  constructor(private readonly _store: Store<any>) {
-  }
+  constructor(private readonly _store: Store<any>) {}
 
   public cart$: Observable<ICartProduct[]> = this._store.select(selectProducts);
 
@@ -35,7 +34,6 @@ export class CartComponent {
       setCountProductInCart({ product: { ...product, count: Number(value) } }),
     );
   }
-
   public decrementProductInCart(product: ICartProduct) {
     if (product.count > 1) {
       this._store.dispatch(decrementProductInCart({ product }));
