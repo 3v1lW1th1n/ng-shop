@@ -23,7 +23,6 @@ export class CategoriesComponent implements ControlValueAccessor {
   public onChange!: Function;
 
   writeValue(_id: string): void {
-    console.log(this.categories, _id)
     let currentCategory;
     for (const category of this.categories) {
       for (const subCategory of category.subCategories) {

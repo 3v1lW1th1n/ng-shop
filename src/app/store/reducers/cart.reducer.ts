@@ -23,7 +23,7 @@ export const cartAdapter: EntityAdapter<ICartProduct> = createEntityAdapter({
   selectId: (product: ICartProduct) => product._id,
 });
 
-const initialState: EntityState<ICartProduct> = cartAdapter.getInitialState({});
+const initialState: EntityState<ICartProduct> = cartAdapter.getInitialState();
 const cartReducer = createReducer(
   initialState,
   on(addProductToCart, (state: EntityState<ICartProduct>, { product }) => {
@@ -78,56 +78,15 @@ export function reducerCart(state: any | undefined, action: any) {
   return cartReducer(state, action);
 }
 
-// export function cartReducer(
-//   state: EntityState<ICartProduct> = initialState,
-//   action: CartProductsActions,
-// ): EntityState<ICartProduct> {
-//   if (action instanceof AddProductToCart) {
-//     const entity: ICartProduct | undefined = state.entities[action.payload._id];
-//     return adapter.upsertOne(
-//       {
-//         ...action.payload,
-//         count: entity ? entity.count + 1 : 1,
-//       },
-//       state,
-//     );
-//   }
-//   if (action instanceof RemoveProductFromCart) {
-//     return adapter.removeOne(action.payload._id, state);
-//   }
-//   if (action instanceof IncrementProductInCart) {
-//     return adapter.updateOne(
-//       {
-//         id: action.payload._id,
-//         changes: { count: action.payload.count + 1 },
-//       },
-//       state,
-//     );
-//   }
-//   if (action instanceof DecrementProductInCart) {
-//     return adapter.updateOne(
-//       {
-//         id: action.payload._id,
-//         changes: { count: action.payload.count - 1 },
-//       },
-//       state,
-//     );
-//   }
-//   return state;
-// }
 export const selectProductsState = createFeatureSelector<any>('cart');
 export const { selectAll } = cartAdapter.getSelectors();
-export const selectProductsIds = createSelector(
+export const selectProducts = createSelector(
   selectProductsState,
-  selectAll, // shorthand for usersState => fromUser.selectUserIds(usersState)
+  selectAll,
 );
-// export const selectProductsState = createFeatureSelector<EntityState<IProduct>>(
-//   'products',
-// );
-// export const selectAllProducts = createSelector(selectProductsState, selectAll);
 
 export const trueProductsCount: MemoizedSelector<any, number> = createSelector(
-  selectProductsIds,
+  selectProducts,
   (products: ICartProduct[]) => {
     return products.reduce((count: number, product: ICartProduct) => {
       return (count += product.count);

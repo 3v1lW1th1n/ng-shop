@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CartResolverService } from '@shared/services/cart-resolver.service';
 
 const routes: Routes = [
   {
@@ -10,7 +11,6 @@ const routes: Routes = [
   {
     path: 'cart',
     redirectTo: 'cart',
-    pathMatch: 'full',
   },
   {
     path: 'products',
@@ -18,11 +18,20 @@ const routes: Routes = [
       import('./content/products/products.module').then(
         mod => mod.ProductsModule,
       ),
+    data: {
+      state: 'products',
+    },
   },
   {
     path: 'cart',
     loadChildren: () =>
       import('./content/cart/cart.module').then(mod => mod.CartModule),
+    data: {
+      state: 'cart',
+    },
+    resolve: {
+      products: CartResolverService,
+    },
   },
   {
     path: '**',
@@ -34,4 +43,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

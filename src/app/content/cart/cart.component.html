@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="cart" *ngFor="let product of cart$ | async">
+  <div class="cart" *ngFor="let product of cart$ | async; trackBy: trackById">
     <mat-icon class="cart-cancel" (click)="removeProductFromCart(product)"
       >cancel</mat-icon
     >
