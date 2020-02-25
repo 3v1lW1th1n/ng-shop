@@ -37,7 +37,6 @@ export class ProductsComponent implements OnInit {
         this.store.dispatch(getProductsPending(query));
         this.filterForm.patchValue(query);
       });
-    //TODO need think about async categories;
     this.products$ = this.store
       .select('products', 'items')
       .pipe(

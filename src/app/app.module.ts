@@ -24,7 +24,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule.forRoot(),
     EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers, {
-      // metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
@@ -37,5 +36,4 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
