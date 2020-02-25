@@ -10,3 +10,20 @@ export const getProductsSuccess = createAction(
   props<{ products: IProduct[] }>(),
 );
 export const getProductsError = createAction('[Products] Get products error');
+
+export const getProductPending = createAction(
+  '[Product] Get product pending',
+  props<{ id: string }>(),
+);
+export const getProductSuccess = createAction(
+  '[Product] Get product success',
+  props<{ product: IProduct }>(),
+);
+
+export const createFeedbackPending = createAction(
+  '[Feedback] Create feedback pending',
+  props<{ feedback: any }>(),
+);
+export const createFeedbackSuccess = createAction(
+  '[Feedback] Create feedback success',
+);

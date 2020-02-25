@@ -42,8 +42,7 @@ export class CategoriesComponent implements ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched() {
-  }
+  registerOnTouched() {}
 
   public categoryToggle() {
     this.isOpen = !this.isOpen;

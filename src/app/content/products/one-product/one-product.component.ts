@@ -1,12 +1,11 @@
+import { IProduct } from 'src/app/content/products/store/reducers/products.reducer';
 import { Store } from '@ngrx/store';
-import { Component, ComponentFactoryResolver, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ModalService } from './../../../modal/modal.service';
+import { Component, ComponentFactoryResolver, Injector } from '@angular/core';
 
-import { pluck } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
-import { IProduct } from '../store/reducers/products.reducer';
-import { IStore } from 'src/app/store/reducers';
-import { ModalService } from '@modal/modal.service';
+import { OneProductReviewModalComponent } from './one-product-review-modal/one-product-review-modal.component';
+import { createFeedbackPending } from '../store/actions/products.actions';
 import { CardConfirmModalComponent } from '../card/card-confirm-modal/card-confirm-modal.component';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 
@@ -16,16 +15,34 @@ import { addProductToCart } from 'src/app/store/actions/cart.actions';
   styleUrls: ['./one-product.component.sass'],
 })
 export class OneProductComponent {
-  public product$: Observable<IProduct[]> = this.activatedRoute.data.pipe(
-    pluck('product'),
-  );
   constructor(
-    private activatedRoute: ActivatedRoute,
     private _modalService: ModalService,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _injector: Injector,
-    private _store: Store<IStore>,
+    private store: Store<any>,
   ) {}
+  public product$: Observable<IProduct> = this.store.select('products', 'item');
+  public addFeedback(): void {
+    this._modalService.open({
+      component: OneProductReviewModalComponent,
+      resolver: this._componentFactoryResolver,
+      injector: this._injector,
+      context: {
+        save: (value: any) => {
+          this.store.dispatch(
+            createFeedbackPending({
+              feedback: { ...value },
+            }),
+          );
+          this._modalService.close();
+        },
+        close: () => {
+          this._modalService.close();
+        },
+      },
+    });
+  }
+
   public addProduct(product: IProduct): void {
     this._modalService.open({
       component: CardConfirmModalComponent,
@@ -34,7 +51,7 @@ export class OneProductComponent {
       context: {
         product: { ...product },
         save: () => {
-          this._store.dispatch(addProductToCart({ product }));
+          this.store.dispatch(addProductToCart({ product }));
           this._modalService.close();
         },
         close: () => {
