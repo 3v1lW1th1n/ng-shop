@@ -1,5 +1,5 @@
 import {
-  Directive,
+  Directive, EmbeddedViewRef,
   Input,
   OnInit,
   TemplateRef,
@@ -28,6 +28,7 @@ export class CarouselDirective implements OnInit {
   }
 
   public autoplay: 'on' | 'off' = 'on';
+  public currentView!: EmbeddedViewRef<any>;
   public context: any;
   public index: number = 0;
 
@@ -36,52 +37,42 @@ export class CarouselDirective implements OnInit {
   public constructor(
     private readonly tpl: TemplateRef<any>,
     private readonly vcr: ViewContainerRef,
-  ) {}
+  ) {
+  }
 
   public ngOnInit(): void {
     this.context = {
       $implicit: this.images[this.index],
       controller: {
-        next: () => this.next(),
-        prev: () => this.prev(),
+        start: () => this.start(),
+        stop: () => this.stop(),
       },
     };
-    this.vcr.createEmbeddedView(this.tpl, this.context);
-    this.resetInterval();
+    this.currentView = this.vcr.createEmbeddedView(this.tpl, this.context);
+    this.start();
   }
 
   public next(): void {
-    this.resetInterval();
     this.index++;
     if (this.index >= this.images.length) {
       this.index = 0;
     }
-    this.context.$implicit = this.images[this.index];
+    this.currentView.destroy();
+    this.context = {
+      ...this.context,
+      $implicit: this.images[this.index],
+    };
+    this.currentView = this.vcr.createEmbeddedView(this.tpl, this.context);
   }
 
-  public prev(): void {
-    this.resetInterval();
-    this.index--;
-    if (this.index < 0) {
-      this.index = this.images.length - 1;
-    }
-    this.context.$implicit = this.images[this.index];
-  }
 
-  private resetInterval(): void {
-    if (this.autoplay !== 'on') {
-      return;
-    }
-    this.clearInterval().initInterval();
-  }
-
-  private initInterval(): void {
+  public start(): void {
     this.intervalID = setInterval(() => {
       this.next();
     }, this.ms);
   }
 
-  private clearInterval(): CarouselDirective {
+  public stop(): CarouselDirective {
     clearInterval(this.intervalID);
     return this;
   }

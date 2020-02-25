@@ -11,7 +11,7 @@ import { ProductsEffects } from './store/effects/products.effect';
 import { reducer } from './store/reducers/products.reducer';
 import { CategoriesComponent } from './categories/categories.component';
 import { CarouselComponent } from './carousel/carousel.component';
-import { CarouselDirective } from './carousel.directive';
+import { CarouselDirective } from './carousel/carousel.directive';
 
 @NgModule({
   declarations: [

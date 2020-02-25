@@ -1,38 +1,17 @@
-<div
-  class="main-carousel carousel slide"
-  *ngShopCarousel="
+<div class="main-carousel carousel slide">
+  <div class="carousel-inner" [@inOutAnimation]
+       *ngShopCarousel="
     let image;
     from: images;
     autoplay: 'on';
-    delay: 3000;
-    controller as ctr
-  "
->
-  <!-- <ul class="carousel-indicators">
-      <li
-        data-target="#mainCarousel"
-        data-slide-to="0"
-        class="carousel-indicator"
-      ></li>
-      <li data-target="#mainCarousel" data-slide-to="1"></li>
-      <li data-target="#mainCarousel" data-slide-to="2"></li>
-    </ul> -->
-  <div class="carousel-inner">
+    delay: 3000; controller as ctrl" (mouseenter)="ctrl.stop()" (mouseleave)="ctrl.start()">
     <div class="carousel-item active">
-      <img class="carousel-item-image" [src]="image.src" />
+      <img class="carousel-item-image" [src]="image.src"/>
       <div class="container">
         <div class="carousel-caption">
           <h3 class="h1">{{ image.title }}</h3>
         </div>
       </div>
     </div>
-  </div>
-  <div class="carousel-control-prev" (click)="ctr.prev()">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </div>
-  <div class="carousel-control-next" (click)="ctr.next()">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
   </div>
 </div>
