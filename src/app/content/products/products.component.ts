@@ -28,8 +28,7 @@ export class ProductsComponent implements OnInit {
     private store: Store<IStore & { products: IProductState }>,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.activatedRoute.queryParamMap
@@ -41,10 +40,18 @@ export class ProductsComponent implements OnInit {
     //TODO need think about async categories;
     this.products$ = this.store
       .select('products', 'items')
-      .pipe(filter<IProduct[]>((products: IProduct[]) => products && products.length > 0));
+      .pipe(
+        filter<IProduct[]>(
+          (products: IProduct[]) => products && products.length > 0,
+        ),
+      );
     this.categories$ = this.store
       .select('categories', 'items')
-      .pipe(filter<ICategory[]>((categories: ICategory[]) => categories && categories.length > 0));
+      .pipe(
+        filter<ICategory[]>(
+          (categories: ICategory[]) => categories && categories.length > 0,
+        ),
+      );
     this.store.dispatch(getCategoriesPending());
   }
 

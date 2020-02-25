@@ -1,6 +1,4 @@
-import { IProductState } from './../../content/products/store/reducers/products.reducer';
-import { ActionReducerMap } from '@ngrx/store';
-import { ICategoryState } from './categories.reducer';
+import { ICategoryState, reducerCategories } from './categories.reducer';
 import { routerReducer, RouterStateSerializer } from '@ngrx/router-store';
 import {
   ActivatedRouteSnapshot,
@@ -8,14 +6,19 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
-// tslint:disable-next-line:no-empty-interface
+import { ICartProduct, reducerCart } from './cart.reducer';
+import { ActionReducerMap } from '@ngrx/store';
+import { EntityState } from '@ngrx/entity/src';
 export interface IStore {
   categories: ICategoryState;
+  cart: EntityState<ICartProduct>;
   routerReducer: typeof routerReducer;
-  products: IProductState;
 }
 
-export const reducers: ActionReducerMap<any> = {};
+export const reducers: ActionReducerMap<any> = {
+  categories: reducerCategories,
+  cart: reducerCart,
+};
 
 export interface IRouterStateUrl {
   url: string;
@@ -39,3 +42,19 @@ export class CustomRouterSerializer
     return { url, queryParams, params };
   }
 }
+
+//
+// export function storageMetaReducer(reducer: ActionReducer<IStore>) {
+//   return (state: S, action: A) => {
+//     // reduce the nextState.
+//     console.log('ACTION', action);
+//     console.log('STATE', state);
+//     if (action.type === '@ngrx/store/init') {
+//       console.log('CART', localStorage.getItem('cart'));
+//     }
+//     const nextState = reducer(state, action);
+//     return nextState;
+//   };
+// }
+//
+// export const metaReducers: MetaReducer<IStore>[] = [storageMetaReducer];

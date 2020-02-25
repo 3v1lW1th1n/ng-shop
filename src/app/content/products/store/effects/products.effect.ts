@@ -12,16 +12,24 @@ import { Injectable } from '@angular/core';
 import { Observable, EMPTY } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 
-import { switchMap, catchError, mergeMap, map } from 'rxjs/operators';
+import {
+  switchMap,
+  catchError,
+  mergeMap,
+  map,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { ProductsService } from '../../products.service';
 
 import { go } from '../../../../store/actions/router.actions';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class ProductsEffects {
   constructor(
     private actions: Actions,
     private productsService: ProductsService,
+    private store: Store<any>,
   ) {}
 
   public getProduct$: Observable<any> = createEffect(() =>
@@ -37,13 +45,14 @@ export class ProductsEffects {
   public addFeedback$: Observable<any> = createEffect(() =>
     this.actions.pipe(
       ofType(createFeedbackPending),
-      switchMap(({ feedback }) =>
+      withLatestFrom(this.store.select('products', 'item', '_id')),
+      switchMap(([{ feedback }, product]) =>
         this.productsService
-          .createFeedback(feedback)
+          .createFeedback({ ...feedback, product })
           .pipe(
             mergeMap(() => [
               createFeedbackSuccess(),
-              getProductPending({ id: feedback.product }),
+              getProductPending({ id: product }),
             ]),
           ),
       ),

@@ -13,7 +13,10 @@
           />
           <div class="main-cont-info-price">
             € {{ product.price }}
-            <button class="main-cont-info-price-btn">
+            <button
+              class="main-cont-info-price-btn"
+              (click)="addProduct(product)"
+            >
               <mat-icon>add_shopping_cart</mat-icon>
             </button>
           </div>

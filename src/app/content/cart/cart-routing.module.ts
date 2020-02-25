@@ -5,7 +5,7 @@ import { CartComponent } from './cart.component';
 const routes: Routes = [
   {
     path: '',
-    component: CartComponent,
+    component: CartComponent
   },
 ];
 
@@ -13,4 +13,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CartRoutingModule {}
+export class CartRoutingModule {
+}

@@ -4,7 +4,7 @@
       <input
         class="form-control mr-sm-2"
         type="text"
-        placeholder="Search"
+        placeholder="Название товара"
         aria-label="Search"
         formControlName="text"
       />
@@ -18,9 +18,11 @@
       class="btn btn-outline-primary"
       (click)="getProducts(filterForm.value)"
     >
-      Search
+      Поиск
     </button>
   </div>
+
+  <ng-shop-carousel></ng-shop-carousel>
 
   <div>
     <div class="row homepage-cards">

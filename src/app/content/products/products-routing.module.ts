@@ -13,6 +13,9 @@ const routes: Routes = [
       import('./one-product/one-product.module').then(
         mod => mod.OneProductModule,
       ),
+    data: {
+      state: 'one-product',
+    },
   },
 ];
 
