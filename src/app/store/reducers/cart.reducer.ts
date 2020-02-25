@@ -23,7 +23,7 @@ export const cartAdapter: EntityAdapter<ICartProduct> = createEntityAdapter({
   selectId: (product: ICartProduct) => product._id,
 });
 
-const initialState: EntityState<ICartProduct> = cartAdapter.getInitialState();
+const initialState: EntityState<ICartProduct> = cartAdapter.getInitialState({});
 const cartReducer = createReducer(
   initialState,
   on(addProductToCart, (state: EntityState<ICartProduct>, { product }) => {
@@ -82,7 +82,7 @@ export const selectProductsState = createFeatureSelector<any>('cart');
 export const { selectAll } = cartAdapter.getSelectors();
 export const selectProducts = createSelector(
   selectProductsState,
-  selectAll,
+  selectAll, // shorthand for usersState => fromUser.selectUserIds(usersState)
 );
 
 export const trueProductsCount: MemoizedSelector<any, number> = createSelector(

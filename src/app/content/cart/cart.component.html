@@ -1,8 +1,13 @@
 <div class="container">
-  <div class="cart" *ngFor="let product of cart$ | async; trackBy: trackById">
-    <mat-icon class="cart-cancel" (click)="removeProductFromCart(product)"
-      >cancel</mat-icon
-    >
+  <div class="cart" *ngFor="let product of cart$ | async">
+    <div class="cart-cancel">
+      <mat-icon
+        class="cart-cancel-icon"
+        (click)="removeProductFromCart(product)"
+        >cancel</mat-icon
+      >
+    </div>
+
     <div class="cart-content">
       <img
         class="cart-content-img"

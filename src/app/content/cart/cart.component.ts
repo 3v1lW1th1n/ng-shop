@@ -1,4 +1,7 @@
-import { setCountProductInCart, removeProductFromCart } from './../../store/actions/cart.actions';
+import {
+  setCountProductInCart,
+  removeProductFromCart,
+} from './../../store/actions/cart.actions';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -17,15 +20,11 @@ import {
   styleUrls: ['./cart.component.sass'],
 })
 export class CartComponent implements OnInit {
-  constructor(private readonly _store: Store<any>) {
-  }
+  constructor(private readonly _store: Store<any>) {}
 
-  public cart$: Observable<ICartProduct[]> = this._store.select(
-    selectProducts,
-  );
+  public cart$: Observable<ICartProduct[]> = this._store.select(selectProducts);
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public incrementProductInCart(product: ICartProduct) {
     this._store.dispatch(incrementProductInCart({ product }));
@@ -37,7 +36,6 @@ export class CartComponent implements OnInit {
       setCountProductInCart({ product: { ...product, count: Number(value) } }),
     );
   }
-
   public decrementProductInCart(product: ICartProduct) {
     if (product.count > 1) {
       this._store.dispatch(decrementProductInCart({ product }));
