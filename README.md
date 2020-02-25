@@ -1,25 +1,18 @@
-# Описать какие темы покрыты
+#Окружение и сборка
 
-# добавить loader
-
-# добавить оценку возможно с ggogle
-
-# Добавить оформление заказа
-
-# Добавить тесты
-
-# Добавить SSR (опционально)
+- custom webpack
 
 ## Directives
 
-- Carousel
-- tooltip
-- ngFor trackBy
+- Carousel `done`
+- Carousel directive animation `done`
+- tooltip 
+- ngFor trackBy `done`
 
 ## Pipes
 
-- rating pipe
--
+- rating pipe 
+- 
 
 ## DI
 
@@ -42,14 +35,15 @@
 - Template Driven and Reactive forms
 - Validators
 - AsyncValidators
-- Custom form control
+- Custom form control `done`
 
 ## RxJS
 
-- Router
+- Router `done`
 - Meta Reducers
 - Initial Load from local storage
-- Entity
-- Selectors
+- Entity `done`
+- Selectors `done`
 
 ## Tests
+

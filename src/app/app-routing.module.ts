@@ -9,10 +9,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'cart',
-    redirectTo: 'cart',
-  },
-  {
     path: 'products',
     loadChildren: () =>
       import('./content/products/products.module').then(
@@ -27,6 +23,9 @@ const routes: Routes = [
     loadChildren: () =>
       import('./content/cart/cart.module').then(mod => mod.CartModule),
     canActivate: [CartGuard],
+    data: {
+      state: 'cart',
+    },
   },
   {
     path: '**',
