@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{TMZ7:function(n,r,e){"use strict";e.d(r,"a",(function(){return u}));var t=e("fXoL");let u=(()=>{class n{transform(n){if(!n)return"";const r=n[0];return r?`${r.url}`:""}}return n.\u0275fac=function(r){return new(r||n)},n.\u0275pipe=t.Kb({name:"imgUrl",type:n,pure:!0}),n})()}}]);
