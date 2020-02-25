@@ -26,5 +26,8 @@ export class OneProductReviewModalComponent implements OnInit {
   public close!: () => void;
   public save!: (value: object) => void;
 
+  public getField(name: any) {
+    return this.feedbackForm.get(name);
+  }
   ngOnInit(): void {}
 }
