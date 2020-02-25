@@ -1,4 +1,4 @@
-<div *ngIf="product$ | async as product"  class="container">
+<div *ngIf="product$ | async as product" class="container">
   <div class="title">
     <a>{{ product.name }}</a>
   </div>
@@ -13,7 +13,10 @@
           />
           <div class="main-cont-info-price">
             € {{ product.price }}
-            <button class="main-cont-info-price-btn">
+            <button
+              class="main-cont-info-price-btn"
+              (click)="addProduct(product)"
+            >
               <mat-icon>add_shopping_cart</mat-icon>
             </button>
           </div>
