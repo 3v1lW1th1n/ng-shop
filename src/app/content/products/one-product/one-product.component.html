@@ -43,7 +43,6 @@
           *ngFor="let feedback of (product$ | async)?.feedbacks"
           class="main-comments-review"
         >
-          <p>Customer Name</p>
           <div class="main-comments-review-text">
             <ng-shop-star-rating
               [feedbackRate]="feedback.rate | rate"
