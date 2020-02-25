@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="cart" *ngFor="let product of cart$ | async">
+  <div class="cart" *ngFor="let product of cart$ | async; trackBy:  trackById">
     <div class="cart-cancel">
       <mat-icon
         class="cart-cancel-icon"

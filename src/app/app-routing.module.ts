@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CartResolverService } from '@shared/services/cart-resolver.service';
+import { CartGuard } from '@shared/services/cart.guard';
 
 const routes: Routes = [
   {
@@ -26,12 +26,7 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () =>
       import('./content/cart/cart.module').then(mod => mod.CartModule),
-    data: {
-      state: 'cart',
-    },
-    resolve: {
-      products: CartResolverService,
-    },
+    canActivate: [CartGuard],
   },
   {
     path: '**',

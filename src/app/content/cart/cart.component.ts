@@ -3,7 +3,7 @@ import {
   removeProductFromCart,
 } from './../../store/actions/cart.actions';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   selectProducts,
@@ -19,12 +19,11 @@ import {
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.sass'],
 })
-export class CartComponent implements OnInit {
-  constructor(private readonly _store: Store<any>) {}
+export class CartComponent {
+  constructor(private readonly _store: Store<any>) {
+  }
 
   public cart$: Observable<ICartProduct[]> = this._store.select(selectProducts);
-
-  ngOnInit(): void {}
 
   public incrementProductInCart(product: ICartProduct) {
     this._store.dispatch(incrementProductInCart({ product }));
@@ -36,10 +35,13 @@ export class CartComponent implements OnInit {
       setCountProductInCart({ product: { ...product, count: Number(value) } }),
     );
   }
+
   public decrementProductInCart(product: ICartProduct) {
     if (product.count > 1) {
       this._store.dispatch(decrementProductInCart({ product }));
+      return;
     }
+    this._store.dispatch(removeProductFromCart({ product }));
   }
 
   public removeProductFromCart(product: ICartProduct) {

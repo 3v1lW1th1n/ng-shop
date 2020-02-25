@@ -10,7 +10,7 @@ import { InterceptorService } from './services/interceptor.service';
 import { BASE_URL_TOKEN } from '../config';
 import { CategoriesService } from './services/categories.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CartResolverService } from '@shared/services/cart-resolver.service';
+import { CartGuard } from '@shared/services/cart.guard';
 
 @NgModule({
   declarations: [ImgUrlPipe],
@@ -37,7 +37,7 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         CategoriesService,
-        CartResolverService,
+        CartGuard,
         {
           provide: BASE_URL_TOKEN,
           useValue: environment.baseUrl,
