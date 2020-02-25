@@ -21,22 +21,20 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class CarouselComponent implements OnInit {
   public images = [
     {
-      src: 'assets/images/default-slide-img.jpg',
-      title: 'BEST SPEAKERS DEALS',
+      src: 'assets/img/sale1.png',
+      title: '',
     },
     {
-      src: 'assets/images/default-slide-img.jpg',
-      title: 'BEST SPEAKERS DEALS 111',
+      src: 'assets/img/sale2.png',
+      title: '',
     },
     {
-      src: 'assets/images/default-slide-img.jpg',
-      title: 'BEST SPEAKERS DEALS 222',
+      src: 'assets/img/sale3.png',
+      title: '',
     },
   ];
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
