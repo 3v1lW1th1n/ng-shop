@@ -14,7 +14,7 @@ const routes: Routes = [
         mod => mod.OneProductModule,
       ),
     data: {
-      state: 'one-product',
+      state: 'product',
     },
   },
 ];
