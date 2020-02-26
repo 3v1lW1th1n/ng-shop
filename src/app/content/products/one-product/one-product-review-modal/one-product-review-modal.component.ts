@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { IFeedback } from './../../store/reducers/products.reducer';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,15 +7,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './one-product-review-modal.component.html',
   styleUrls: ['./one-product-review-modal.component.sass'],
 })
-export class OneProductReviewModalComponent implements OnInit {
+export class OneProductReviewModalComponent {
   @Input()
-  public set feedback(value: any) {
+  public set feedback(value: IFeedback) {
     if (!value) {
       return;
     }
-
     this.feedbackForm.patchValue(value);
   }
+  constructor(private fb: FormBuilder) {}
 
   public feedbackForm: FormGroup = this.fb.group({
     advantages: ['', [Validators.required, Validators.minLength(10)]],
@@ -22,12 +23,11 @@ export class OneProductReviewModalComponent implements OnInit {
     description: ['', [Validators.required, Validators.minLength(10)]],
     rate: ['', [Validators.required]],
   });
-  constructor(private fb: FormBuilder) {}
+
   public close!: () => void;
   public save!: (value: object) => void;
 
-  public getField(name: any) {
+  public getField(name: string) {
     return this.feedbackForm.get(name);
   }
-  ngOnInit(): void {}
 }

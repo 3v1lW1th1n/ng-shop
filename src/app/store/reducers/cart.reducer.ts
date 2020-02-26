@@ -74,11 +74,16 @@ const cartReducer = createReducer(
   ),
 );
 
-export function reducerCart(state: any | undefined, action: any) {
+export function reducerCart(
+  state: EntityState<ICartProduct> | undefined,
+  action: any,
+) {
   return cartReducer(state, action);
 }
 
-export const selectProductsState = createFeatureSelector<any>('cart');
+export const selectProductsState = createFeatureSelector<
+  EntityState<ICartProduct>
+>('cart');
 export const { selectAll } = cartAdapter.getSelectors();
 export const selectProducts = createSelector(selectProductsState, selectAll);
 

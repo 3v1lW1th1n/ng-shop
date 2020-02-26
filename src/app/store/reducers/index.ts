@@ -1,3 +1,4 @@
+import { IProductState } from './../../content/products/store/reducers/products.reducer';
 import { ICategoryState, reducerCategories } from './categories.reducer';
 import { routerReducer, RouterStateSerializer } from '@ngrx/router-store';
 import {
@@ -10,6 +11,7 @@ import { ICartProduct, reducerCart } from './cart.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity/src';
 export interface IStore {
+  products: IProductState;
   categories: ICategoryState;
   cart: EntityState<ICartProduct>;
   routerReducer: typeof routerReducer;

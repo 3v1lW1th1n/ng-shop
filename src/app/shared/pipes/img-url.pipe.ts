@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IProduct } from 'src/app/content/products/store/reducers/products.reducer';
+import { IProductImage } from 'src/app/content/products/store/reducers/products.reducer';
 
 @Pipe({
   name: 'imgUrl',
 })
 export class ImgUrlPipe implements PipeTransform {
-  transform(images: IProduct['images']): string {
+  transform(images: IProductImage[] | undefined): string {
     if (!images) {
       return '';
     }
@@ -13,6 +13,7 @@ export class ImgUrlPipe implements PipeTransform {
     if (!currentImg) {
       return '';
     }
+
     return `${currentImg.url}`;
   }
 }

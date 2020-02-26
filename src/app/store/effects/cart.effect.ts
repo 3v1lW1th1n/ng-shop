@@ -1,3 +1,4 @@
+import { IStore } from 'src/app/store/reducers';
 import { map, withLatestFrom, filter } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,11 +10,7 @@ import { go } from '../actions/router.actions';
 
 @Injectable()
 export class CartEffects {
-  constructor(
-    private actions: Actions,
-    private store: Store<any>,
-  ) {
-  }
+  constructor(private actions: Actions, private store: Store<IStore>) {}
 
   public removeProduct$: Observable<any> = createEffect(() =>
     this.actions.pipe(
