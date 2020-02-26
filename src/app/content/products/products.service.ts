@@ -14,7 +14,6 @@ export class ProductsService {
     return this.http.get<IProduct>(`/products/${id}`);
   }
   public createFeedback(feedback: any): Observable<any> {
-    console.log(feedback);
     return this.http.post<any>(`/feedbacks`, feedback);
   }
 }

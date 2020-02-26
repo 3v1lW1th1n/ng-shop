@@ -20,7 +20,6 @@ import { addProductToCart } from 'src/app/store/actions/cart.actions';
 export class CardComponent {
   @Input()
   public product!: IProduct;
-
   @Input()
   public isOdd!: boolean;
 

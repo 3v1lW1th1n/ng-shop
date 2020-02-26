@@ -54,7 +54,7 @@ export class ProductsComponent implements OnInit {
     this.store.dispatch(getCategoriesPending());
   }
 
-  public getProducts(search: any): void {
+  public getProducts(search: object): void {
     const validSearch = Object.entries(search).reduce((obj, [key, value]) => {
       if (!value) {
         return obj;

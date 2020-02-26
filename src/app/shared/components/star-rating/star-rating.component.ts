@@ -6,10 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./star-rating.component.sass'],
 })
 export class StarRatingComponent {
-  @Input() feedbackRate: any;
+  @Input() feedbackRate!: number;
   public coloredStar: string = '';
-  constructor() {}
-
   public stars = [0, 1, 2, 3, 4];
   public highlight(index: number) {
     if (

@@ -12,14 +12,28 @@ export interface IProductState {
   items: IProduct[];
   loading: boolean;
 }
+export interface IFeedback {
+  rate: number;
+  advantages: string;
+  limitations: string;
+  description: string;
+}
+export interface ISearch {
+  text: string;
+  subcategory: string;
+}
+export interface IProductImage {
+  url: string;
+  source: string;
+}
 export interface IProduct {
   _id: string;
   name: string;
   description: string;
-  feedbacks?: any;
+  feedbacks?: IFeedback;
   price: number;
   status: boolean;
-  images?: any;
+  images?: IProductImage[] | undefined;
   rating?: number | undefined;
 }
 const productsReducer = createReducer(

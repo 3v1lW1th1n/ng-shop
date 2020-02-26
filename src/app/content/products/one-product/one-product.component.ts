@@ -1,3 +1,5 @@
+import { IFeedback } from './../store/reducers/products.reducer';
+import { IStore } from 'src/app/store/reducers';
 import { IProduct } from 'src/app/content/products/store/reducers/products.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -19,7 +21,7 @@ export class OneProductComponent {
     private _modalService: ModalService,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _injector: Injector,
-    private store: Store<any>,
+    private store: Store<IStore>,
   ) {}
   public product$: Observable<IProduct> = this.store.select('products', 'item');
   public addFeedback(): void {
@@ -28,7 +30,7 @@ export class OneProductComponent {
       resolver: this._componentFactoryResolver,
       injector: this._injector,
       context: {
-        save: (value: any) => {
+        save: (value: IFeedback) => {
           this.store.dispatch(
             createFeedbackPending({
               feedback: { ...value },
