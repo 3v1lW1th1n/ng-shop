@@ -10,7 +10,7 @@ import { ModalService } from '../../../modal/modal.service';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
-import { IProduct } from '@product-reducer/products.reducer';
+import { IProduct } from '@product-store/reducers/products.reducer';
 
 @Component({
   selector: 'ng-shop-card',

@@ -1,5 +1,5 @@
-import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import { IProduct } from 'src/app/content/products/store/reducers/products.reducer';
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import {
   addProductToCart,
   removeProductFromCart,
@@ -15,6 +15,8 @@ import {
   MemoizedSelector,
   createFeatureSelector,
 } from '@ngrx/store';
+
+// import { IProduct } from '@product-store/reducers/products.reducer';
 
 export interface ICartProduct extends IProduct {
   count: number;

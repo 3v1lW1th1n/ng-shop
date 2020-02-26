@@ -7,7 +7,7 @@ import { OneProductReviewModalComponent } from './one-product-review-modal/one-p
 import { createFeedbackPending } from '../store/actions/products.actions';
 import { CardConfirmModalComponent } from '../card/card-confirm-modal/card-confirm-modal.component';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
-import { IProduct, IFeedback } from '@product-reducer/products.reducer';
+import { IProduct, IFeedback } from '@product-store/reducers/products.reducer';
 import { ModalService } from '@modal/modal.service';
 
 @Component({
