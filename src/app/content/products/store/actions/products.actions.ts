@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IProduct } from '../reducers/products.reducer';
+import { IProduct, IFeedback } from '../reducers/products.reducer';
 
 export const getProductsPending = createAction(
   '[Products] Get products pending',
@@ -30,7 +30,7 @@ export const getProductSuccess = createAction(
 
 export const createFeedbackPending = createAction(
   '[Feedback] Create feedback pending',
-  props<{ feedback: any }>(),
+  props<{ feedback: IFeedback }>(),
 );
 export const createFeedbackSuccess = createAction(
   '[Feedback] Create feedback success',

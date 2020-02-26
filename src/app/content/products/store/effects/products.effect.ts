@@ -1,3 +1,4 @@
+import { IStore } from 'src/app/store/reducers';
 import { IProduct } from 'src/app/content/products/store/reducers/products.reducer';
 import {
   getProductsSuccess,
@@ -29,9 +30,8 @@ export class ProductsEffects {
   constructor(
     private actions: Actions,
     private productsService: ProductsService,
-    private store: Store<any>,
-  ) {
-  }
+    private store: Store<IStore>,
+  ) {}
 
   public getProduct$: Observable<any> = createEffect(() =>
     this.actions.pipe(
@@ -81,6 +81,7 @@ export class ProductsEffects {
             ];
           }),
           catchError(err => {
+            // tslint:disable-next-line:no-console
             console.log(err);
             return EMPTY;
           }),

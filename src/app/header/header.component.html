@@ -4,7 +4,7 @@
       <div>
         <a class="navbar-brand" routerLink=""><strong>NG-Shop</strong></a>
       </div>
-      <div class="navbar-collapse" id="navbarsExample07">
+      <div class="navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" routerLink="cart">
@@ -12,8 +12,8 @@
               <span
                 class="button-counter"
                 *ngIf="productCount$ | async as count"
-                >{{ count }}</span
-              >
+                >{{ count }}
+              </span>
             </a>
           </li>
           <li class="nav-item"></li>

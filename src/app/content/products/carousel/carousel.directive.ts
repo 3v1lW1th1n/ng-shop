@@ -1,5 +1,6 @@
 import {
-  Directive, EmbeddedViewRef,
+  Directive,
+  EmbeddedViewRef,
   Input,
   OnInit,
   TemplateRef,
@@ -12,13 +13,12 @@ import {
 export class CarouselDirective implements OnInit {
   @Input()
   public appExchangeRates: any;
-
+  // tslint:disable-next-line: no-input-rename
   @Input('ngShopCarouselFrom')
   public images: { src: string; title: string }[] = [];
-
+  // tslint:disable-next-line: no-input-rename
   @Input('ngShopCarouselDelay')
   public ms: number = 5000;
-
   @Input('ngShopCarouselAutoplay')
   public set playAuto(mode: 'on' | 'off') {
     if (!mode) {
@@ -31,14 +31,12 @@ export class CarouselDirective implements OnInit {
   public currentView!: EmbeddedViewRef<any>;
   public context: any;
   public index: number = 0;
-
   private intervalID!: number;
 
   public constructor(
     private readonly tpl: TemplateRef<any>,
     private readonly vcr: ViewContainerRef,
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.context = {
@@ -64,7 +62,6 @@ export class CarouselDirective implements OnInit {
     };
     this.currentView = this.vcr.createEmbeddedView(this.tpl, this.context);
   }
-
 
   public start(): void {
     this.intervalID = setInterval(() => {

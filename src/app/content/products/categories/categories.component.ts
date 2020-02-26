@@ -18,7 +18,7 @@ export class CategoriesComponent implements ControlValueAccessor {
   @Input()
   public categories: ICategory[] = [];
   public isOpen = false;
-  public currentSubCategory: any;
+  public currentSubCategory!: any;
   public defaultValue = { name: 'Все категории' };
   public onChange!: Function;
 

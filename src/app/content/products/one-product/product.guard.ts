@@ -1,3 +1,4 @@
+import { IStore } from 'src/app/store/reducers';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -14,7 +15,10 @@ import { go } from 'src/app/store/actions/router.actions';
 
 @Injectable()
 export class ProductGuard implements CanActivate {
-  public constructor(private _http: HttpClient, private _store: Store<any>) {}
+  public constructor(
+    private _http: HttpClient,
+    private _store: Store<IStore>,
+  ) {}
 
   public canActivate(
     route: ActivatedRouteSnapshot,
