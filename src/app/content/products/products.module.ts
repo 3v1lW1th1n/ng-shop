@@ -10,18 +10,21 @@ import { ProductsService } from './products.service';
 import { ProductsEffects } from './store/effects/products.effect';
 import { reducer } from './store/reducers/products.reducer';
 import { reducerCategories } from 'src/app/store/reducers/categories.reducer';
-import { CategoriesEffects } from 'src/app/store/effects/categories.effect';
 import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
-  declarations: [CardComponent, ProductsComponent, CardConfirmModalComponent, CategoriesComponent],
+  declarations: [
+    CardComponent,
+    ProductsComponent,
+    CardConfirmModalComponent,
+    CategoriesComponent,
+  ],
   imports: [
     SharedModule,
     ProductsRoutingModule,
     StoreModule.forFeature('products', reducer),
     EffectsModule.forFeature([ProductsEffects]),
     StoreModule.forFeature('categories', reducerCategories),
-    EffectsModule.forFeature([CategoriesEffects]),
   ],
   providers: [ProductsService],
 })

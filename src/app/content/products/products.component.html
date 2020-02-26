@@ -10,7 +10,8 @@
       />
     </div>
     <app-categories
-      [categories]="categories$ | async"
+      *ngIf="categories$ | async as categories"
+      [categories]="categories"
       formControlName="subcategory"
     ></app-categories>
     <button

@@ -1,4 +1,5 @@
-import { ProductsEffects } from 'src/app/content/products/store/effects/products.effect';
+import { RouterEffects } from './router.effect';
+import { CategoriesEffects } from './categories.effect';
 
 // tslint:disable-next-line: typedef
-export const effects = [ProductsEffects];
+export const effects = [CategoriesEffects, RouterEffects];

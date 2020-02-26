@@ -9,7 +9,10 @@
     <ul class="categories-list-menu" *ngFor="let category of categories">
       <li>
         <p class="categories-list-menu-category">{{ category.name }}</p>
-        <ul *ngFor="let subCategory of category.subCategories">
+        <ul
+          class="categories-list-menu-sub"
+          *ngFor="let subCategory of category.subCategories"
+        >
           <li
             (click)="subCategoryToggle(subCategory)"
             class="categories-list-menu-subcategory"
