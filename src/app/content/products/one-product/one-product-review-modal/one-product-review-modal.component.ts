@@ -1,6 +1,6 @@
-import { IFeedback } from './../../store/reducers/products.reducer';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IFeedback } from '@product-store/reducers/products.reducer';
 
 @Component({
   selector: 'ng-shop-one-product-review-modal',

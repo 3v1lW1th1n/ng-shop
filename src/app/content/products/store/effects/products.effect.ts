@@ -6,7 +6,8 @@ import {
   getProductPending,
   getProductsPending,
   createFeedbackPending,
-  createFeedbackSuccess, getProductsPagingSuccess,
+  createFeedbackSuccess,
+  getProductsPagingSuccess,
 } from './../actions/products.actions';
 
 import { Injectable } from '@angular/core';
@@ -20,10 +21,10 @@ import {
   map,
   withLatestFrom,
 } from 'rxjs/operators';
-import { ProductsService } from '../../products.service';
 
-import { go } from '../../../../store/actions/router.actions';
 import { Store } from '@ngrx/store';
+import { go } from '@root-store/actions/router.actions';
+import { ProductsService } from '../../products.service';
 
 @Injectable()
 export class ProductsEffects {
@@ -66,10 +67,12 @@ export class ProductsEffects {
         return this.productsService.getProducts(search).pipe(
           mergeMap((products: IProduct[]) => {
             if (products.length === 0) {
-              return [go({
-                path: [],
-                extras: { queryParamsHandling: 'preserve' },
-              })];
+              return [
+                go({
+                  path: [],
+                  extras: { queryParamsHandling: 'preserve' },
+                }),
+              ];
             }
             return [
               go({
@@ -77,7 +80,9 @@ export class ProductsEffects {
                 query: search,
                 extras: { queryParamsHandling: null },
               }),
-              search.page === 1 ? getProductsSuccess({ products }) : getProductsPagingSuccess({ products }),
+              search.page === 1
+                ? getProductsSuccess({ products })
+                : getProductsPagingSuccess({ products }),
             ];
           }),
           catchError(err => {

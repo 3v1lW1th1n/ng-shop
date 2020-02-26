@@ -1,7 +1,3 @@
-import {
-  setCountProductInCart,
-  removeProductFromCart,
-} from './../../store/actions/cart.actions';
 import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -12,6 +8,7 @@ import {
 import {
   incrementProductInCart,
   decrementProductInCart,
+  setCountProductInCart,
 } from 'src/app/store/actions/cart.actions';
 import { IStore } from 'src/app/store/reducers';
 

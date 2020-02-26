@@ -1,5 +1,4 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ICategory } from './../../store/reducers/categories.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
@@ -13,6 +12,7 @@ import {
   removeFromStateProducts,
 } from './store/actions/products.actions';
 import { ProductsService } from './products.service';
+import { ICategory } from '@root-store/reducers/categories.reducer';
 
 @Component({
   selector: 'ng-shop-products',

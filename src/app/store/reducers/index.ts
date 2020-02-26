@@ -1,5 +1,3 @@
-import { IProductState } from './../../content/products/store/reducers/products.reducer';
-import { ICategoryState, reducerCategories } from './categories.reducer';
 import { routerReducer, RouterStateSerializer } from '@ngrx/router-store';
 import {
   ActivatedRouteSnapshot,
@@ -10,6 +8,8 @@ import {
 import { ICartProduct, reducerCart } from './cart.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity/src';
+import { IProductState } from '@product-store/reducers/products.reducer';
+import { ICategoryState, reducerCategories } from './categories.reducer';
 
 export interface IStore {
   products: IProductState;

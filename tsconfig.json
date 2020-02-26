@@ -21,6 +21,7 @@
       "@modal/*": ["src/app/modal/*"],
       "@env/*": ["src/environments/*"],
       "@product-store/*": ["src/app/content/products/store/*"],
+      "@category-store/*": ["src/app/content/category/store/*"],
       "@root-store/*": ["src/app/store/*"]
     }
   },
