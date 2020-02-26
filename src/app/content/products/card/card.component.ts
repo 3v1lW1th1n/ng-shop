@@ -7,10 +7,10 @@ import {
 
 import { CardConfirmModalComponent } from './card-confirm-modal/card-confirm-modal.component';
 import { ModalService } from '../../../modal/modal.service';
-import { IProduct } from '../store/reducers/products.reducer';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
+import { IProduct } from '@product-reducer/products.reducer';
 
 @Component({
   selector: 'ng-shop-card',

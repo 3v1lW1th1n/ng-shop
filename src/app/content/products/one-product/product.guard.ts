@@ -8,10 +8,10 @@ import {
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { IProduct } from '../store/reducers/products.reducer';
 import { Store } from '@ngrx/store';
 import { getProductSuccess } from '../store/actions/products.actions';
 import { go } from 'src/app/store/actions/router.actions';
+import { IProduct } from '@product-reducer/products.reducer';
 
 @Injectable()
 export class ProductGuard implements CanActivate {
