@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import {  CanActivate } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { ICartProduct, selectProducts } from '../../store/reducers/cart.reducer';
 import { switchMap, take } from 'rxjs/operators';
-import { go } from '../../store/actions/router.actions';
 import { Store } from '@ngrx/store';
 
 @Injectable()
@@ -21,7 +20,6 @@ export class CartGuard implements CanActivate {
           if (Array.isArray(products) && products.length > 0) {
             return of(true);
           }
-          this.store.dispatch(go({ path: [''] }));
           return of(false);
         }),
       );

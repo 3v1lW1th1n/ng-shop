@@ -5,7 +5,7 @@ import {
   getProductPending,
   getProductsPending,
   createFeedbackPending,
-  createFeedbackSuccess,
+  createFeedbackSuccess, getProductsPagingSuccess,
 } from './../actions/products.actions';
 
 import { Injectable } from '@angular/core';
@@ -30,7 +30,8 @@ export class ProductsEffects {
     private actions: Actions,
     private productsService: ProductsService,
     private store: Store<any>,
-  ) {}
+  ) {
+  }
 
   public getProduct$: Observable<any> = createEffect(() =>
     this.actions.pipe(
@@ -64,13 +65,19 @@ export class ProductsEffects {
       switchMap(({ type, ...search }) => {
         return this.productsService.getProducts(search).pipe(
           mergeMap((products: IProduct[]) => {
+            if (products.length === 0) {
+              return [go({
+                path: [],
+                extras: { queryParamsHandling: 'preserve' },
+              })];
+            }
             return [
               go({
                 path: [],
                 query: search,
-                extras: { queryParamsHandling: 'merge' },
+                extras: { queryParamsHandling: null },
               }),
-              getProductsSuccess({ products }),
+              search.page === 1 ? getProductsSuccess({ products }) : getProductsPagingSuccess({ products }),
             ];
           }),
           catchError(err => {
