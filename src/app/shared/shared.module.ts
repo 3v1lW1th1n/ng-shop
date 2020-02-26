@@ -13,9 +13,10 @@ import { CategoriesService } from './services/categories.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CartGuard } from '@shared/services/cart.guard';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
 
 @NgModule({
-  declarations: [ImgUrlPipe, RatePipe, StarRatingComponent],
+  declarations: [ImgUrlPipe, RatePipe, StarRatingComponent, InfiniteScrollComponent],
   imports: [ReactiveFormsModule, MatIconModule, CommonModule],
   exports: [
     CommonModule,
@@ -27,6 +28,7 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     ImgUrlPipe,
     RatePipe,
     ReactiveFormsModule,
+    InfiniteScrollComponent,
   ],
   providers: [
     {

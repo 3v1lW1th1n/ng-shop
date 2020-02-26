@@ -1,72 +1,74 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ICategory } from './../../store/reducers/categories.reducer';
 import { IStore } from 'src/app/store/reducers';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { IProduct, IProductState } from './store/reducers/products.reducer';
 import { Store } from '@ngrx/store';
-import { getProductsPending } from './store/actions/products.actions';
 import { getCategoriesPending } from 'src/app/store/actions/categories.actions';
 import { ActivatedRoute } from '@angular/router';
-import { filter, pluck } from 'rxjs/operators';
-import { go } from '../../store/actions/router.actions';
+import { debounceTime, map, skip, withLatestFrom } from 'rxjs/operators';
+import { getProductsPending, removeFromStateProducts } from './store/actions/products.actions';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'ng-shop-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.sass'],
 })
-export class ProductsComponent implements OnInit {
-  public products$!: Observable<IProduct[]>;
-  public categories$!: Observable<ICategory[]>;
+export class ProductsComponent implements OnInit, OnDestroy {
+
+  public products$: Observable<IProduct[]> = this.store
+    .select('products', 'items');
+
+  public categories$: Observable<ICategory[]> = this.store
+    .select('categories', 'items');
+
   public filterForm: FormGroup = this.fb.group({
     text: [''],
     subcategory: [''],
   });
 
+  private pageSequence$$ = new Subject();
+
   constructor(
     private store: Store<IStore & { products: IProductState }>,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-  ) {}
+    private productsService: ProductsService,
+  ) {
+  }
 
   public ngOnInit(): void {
-    this.activatedRoute.queryParamMap
-      .pipe(pluck('params'))
-      .subscribe((query: any) => {
-        this.store.dispatch(getProductsPending(query));
-        this.filterForm.patchValue(query);
+    const filterSequence$ = this.filterForm.valueChanges.pipe(
+      skip(1),
+      debounceTime(300),
+      map((params) => ({ ...params, page: 1 })),
+    );
+    this.productsService.prepareQuery(filterSequence$)
+      .subscribe((searchQuery: any) => {
+        this.store.dispatch(getProductsPending(searchQuery));
       });
-    this.products$ = this.store
-      .select('products', 'items')
-      .pipe(
-        filter<IProduct[]>(
-          (products: IProduct[]) => products && products.length > 0,
-        ),
-      );
-    this.categories$ = this.store
-      .select('categories', 'items')
-      .pipe(
-        filter<ICategory[]>(
-          (categories: ICategory[]) => categories && categories.length > 0,
-        ),
-      );
+
+    const pagingSequence$ = this.pageSequence$$.pipe(
+      withLatestFrom(this.filterForm.valueChanges),
+      map(([page, params]: any[]) => ({ ...params, page })),
+    );
+    this.productsService.prepareQuery(pagingSequence$)
+      .subscribe((searchQuery: any) => {
+        this.store.dispatch(getProductsPending(searchQuery));
+      });
+    const query = this.activatedRoute.snapshot.queryParams;
+    this.filterForm.patchValue(query);
     this.store.dispatch(getCategoriesPending());
   }
 
-  public getProducts(search: object): void {
-    const validSearch = Object.entries(search).reduce((obj, [key, value]) => {
-      if (!value) {
-        return obj;
-      }
-      return { ...obj, [key]: value };
-    }, {});
-    this.store.dispatch(
-      go({
-        path: [],
-        query: validSearch,
-        extras: {},
-      }),
-    );
+  public scroll(isInit: boolean) {
+    let { page = 1 } = this.activatedRoute.snapshot.queryParams;
+    this.pageSequence$$.next(isInit ? page : ++page);
+  }
+
+  public ngOnDestroy(): void {
+    this.store.dispatch(removeFromStateProducts());
   }
 }

@@ -4,7 +4,7 @@ import {
   getProductsSuccess,
   getProductsError,
   getProductPending,
-  getProductSuccess,
+  getProductSuccess, getProductsPagingSuccess, removeFromStateProducts,
 } from '../actions/products.actions';
 
 export interface IProductState {
@@ -12,6 +12,7 @@ export interface IProductState {
   items: IProduct[];
   loading: boolean;
 }
+
 export interface IFeedback {
   rate: number;
   advantages: string;
@@ -26,6 +27,7 @@ export interface IProductImage {
   url: string;
   source: string;
 }
+
 export interface IProduct {
   _id: string;
   name: string;
@@ -36,6 +38,7 @@ export interface IProduct {
   images?: IProductImage[] | undefined;
   rating?: number | undefined;
 }
+
 const productsReducer = createReducer(
   {
     item: { _id: '', description: '', name: '', price: 0, status: false },
@@ -48,7 +51,17 @@ const productsReducer = createReducer(
   })),
   on(getProductsSuccess, (state: IProductState, { products }) => ({
     ...state,
-    items: products,
+    items: [...products],
+    loading: false,
+  })),
+  on(getProductsPagingSuccess, (state: IProductState, { products }) => ({
+    ...state,
+    items: [...state.items, ...products],
+    loading: false,
+  })),
+  on(removeFromStateProducts, (state: IProductState, _action) => ({
+    ...state,
+    items: [],
     loading: false,
   })),
   on(getProductPending, (state: IProductState) => ({
