@@ -44,7 +44,6 @@ export class CartEffects {
         ),
         withLatestFrom(this.store.select(selectProducts)),
         tap(([, products]) => {
-          console.log('%%%%%%', products);
           this.localStorageService.addToLocalStorage('cart', products);
         }),
       ),
