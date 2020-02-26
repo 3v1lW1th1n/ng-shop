@@ -14,19 +14,13 @@
       [categories]="categories"
       formControlName="subcategory"
     ></ng-shop-categories>
-    <button
-      class="btn btn-outline-primary"
-      (click)="getProducts(filterForm.value)"
-    >
-      Поиск
-    </button>
   </div>
 
   <ng-shop-carousel></ng-shop-carousel>
 
-  <div>
+  <ng-shop-infinite-scroll (scrolled)="scroll($event)" *ngIf="products$ | async as products">
     <div class="row homepage-cards">
-      <ng-container *ngIf="products$ | async as products">
+      <ng-container >
         <ng-container *ngFor="let product of products">
           <ng-shop-card
             [product]="product"
@@ -35,5 +29,5 @@
         </ng-container>
       </ng-container>
     </div>
-  </div>
+  </ng-shop-infinite-scroll>
 </div>
