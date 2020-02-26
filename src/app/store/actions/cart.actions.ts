@@ -1,6 +1,6 @@
-import { IProduct } from './../../content/products/store/reducers/products.reducer';
 import { createAction, props } from '@ngrx/store';
 import { ICartProduct } from '../reducers/cart.reducer';
+import { IProduct } from '@product-reducer/products.reducer';
 
 export const addProductToCart = createAction(
   '[Product] Add product to cart',
@@ -23,4 +23,9 @@ export const setCountProductInCart = createAction(
 export const decrementProductInCart = createAction(
   '[Products] Decrement product in cart',
   props<{ product: ICartProduct }>(),
+);
+
+export const addAllProductsToCart = createAction(
+  '[Product] Add all products to cart',
+  props<{ products: ICartProduct[] }>(),
 );

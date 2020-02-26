@@ -1,6 +1,7 @@
+import { LocalStorageService } from './services/localStorage.service';
 import { RatePipe } from './pipes/rate.pipes';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,9 +15,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CartGuard } from '@shared/services/cart.guard';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
+import { Store } from '@ngrx/store';
+import { addAllProductsToCart } from '../store/actions/cart.actions';
 
 @NgModule({
-  declarations: [ImgUrlPipe, RatePipe, StarRatingComponent, InfiniteScrollComponent],
+  declarations: [
+    ImgUrlPipe,
+    RatePipe,
+    StarRatingComponent,
+    InfiniteScrollComponent,
+  ],
   imports: [ReactiveFormsModule, MatIconModule, CommonModule],
   exports: [
     CommonModule,
@@ -45,6 +53,19 @@ export class SharedModule {
       providers: [
         CategoriesService,
         CartGuard,
+        LocalStorageService,
+        {
+          provide: APP_INITIALIZER,
+          useFactory: (
+            store: Store<any>,
+            localStorageService: LocalStorageService,
+          ) => () => {
+            const products = localStorageService.getFromLocalStorage('cart');
+            store.dispatch(addAllProductsToCart({ products }));
+          },
+          multi: true,
+          deps: [Store, LocalStorageService],
+        },
         {
           provide: BASE_URL_TOKEN,
           useValue: environment.baseUrl,

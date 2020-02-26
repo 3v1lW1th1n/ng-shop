@@ -19,7 +19,8 @@
     "paths": {
       "@shared/*": ["src/app/shared/*"],
       "@modal/*": ["src/app/modal/*"],
-      "@env/*": ["src/environments/*"]
+      "@env/*": ["src/environments/*"],
+      "@product-reducer/*": ["src/app/content/products/store/reducers/*"]
     }
   },
   "angularCompilerOptions": {

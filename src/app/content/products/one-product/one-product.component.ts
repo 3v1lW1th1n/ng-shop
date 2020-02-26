@@ -1,15 +1,14 @@
-import { IFeedback } from './../store/reducers/products.reducer';
 import { IStore } from 'src/app/store/reducers';
-import { IProduct } from 'src/app/content/products/store/reducers/products.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ModalService } from './../../../modal/modal.service';
 import { Component, ComponentFactoryResolver, Injector } from '@angular/core';
 
 import { OneProductReviewModalComponent } from './one-product-review-modal/one-product-review-modal.component';
 import { createFeedbackPending } from '../store/actions/products.actions';
 import { CardConfirmModalComponent } from '../card/card-confirm-modal/card-confirm-modal.component';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
+import { IProduct, IFeedback } from '@product-reducer/products.reducer';
+import { ModalService } from '@modal/modal.service';
 
 @Component({
   selector: 'ng-shop-one-product',

@@ -6,6 +6,7 @@ import {
   incrementProductInCart,
   decrementProductInCart,
   setCountProductInCart,
+  addAllProductsToCart,
 } from '../actions/cart.actions';
 import {
   createReducer,
@@ -35,6 +36,9 @@ const cartReducer = createReducer(
       },
       state,
     );
+  }),
+  on(addAllProductsToCart, (state: EntityState<ICartProduct>, { products }) => {
+    return cartAdapter.addAll(products, state);
   }),
   on(removeProductFromCart, (state: EntityState<ICartProduct>, { product }) => {
     return cartAdapter.removeOne(product._id, state);
