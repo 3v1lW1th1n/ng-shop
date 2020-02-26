@@ -4,7 +4,9 @@ import {
   getProductsSuccess,
   getProductsError,
   getProductPending,
-  getProductSuccess, getProductsPagingSuccess, removeFromStateProducts,
+  getProductSuccess,
+  getProductsPagingSuccess,
+  removeFromStateProducts,
 } from '../actions/products.actions';
 
 export interface IProductState {
@@ -41,7 +43,13 @@ export interface IProduct {
 
 const productsReducer = createReducer(
   {
-    item: { _id: '', description: '', name: '', price: 0, status: false },
+    item: {
+      _id: '',
+      description: '',
+      name: '',
+      price: 0,
+      status: false,
+    },
     items: [],
     loading: false,
   },

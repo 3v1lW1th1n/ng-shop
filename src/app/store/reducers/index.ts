@@ -10,6 +10,7 @@ import {
 import { ICartProduct, reducerCart } from './cart.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity/src';
+
 export interface IStore {
   products: IProductState;
   categories: ICategoryState;

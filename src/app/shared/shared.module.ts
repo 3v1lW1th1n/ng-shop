@@ -1,3 +1,4 @@
+import { LocalStorageService } from './services/localStorage.service';
 import { RatePipe } from './pipes/rate.pipes';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
 import { ModuleWithProviders, NgModule } from '@angular/core';
@@ -16,7 +17,12 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
 
 @NgModule({
-  declarations: [ImgUrlPipe, RatePipe, StarRatingComponent, InfiniteScrollComponent],
+  declarations: [
+    ImgUrlPipe,
+    RatePipe,
+    StarRatingComponent,
+    InfiniteScrollComponent,
+  ],
   imports: [ReactiveFormsModule, MatIconModule, CommonModule],
   exports: [
     CommonModule,
@@ -45,6 +51,7 @@ export class SharedModule {
       providers: [
         CategoriesService,
         CartGuard,
+        LocalStorageService,
         {
           provide: BASE_URL_TOKEN,
           useValue: environment.baseUrl,
