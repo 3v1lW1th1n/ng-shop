@@ -10,4 +10,11 @@ export class ProductsService {
   public getProducts(search: any): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(`/products`, { params: search });
   }
+  public getProduct(id: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`/products/${id}`);
+  }
+  public createFeedback(feedback: any): Observable<any> {
+    console.log(feedback);
+    return this.http.post<any>(`/feedbacks`, feedback);
+  }
 }

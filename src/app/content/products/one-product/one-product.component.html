@@ -1,7 +1,4 @@
-<!-- <div>
-  {{ product$ | async | json }}
-</div> -->
-<div *ngIf="product$ | async as product">
+<div *ngIf="product$ | async as product" class="container">
   <div class="title">
     <a>{{ product.name }}</a>
   </div>
@@ -16,10 +13,15 @@
           />
           <div class="main-cont-info-price">
             € {{ product.price }}
-            <button class="main-cont-info-price-btn">
+            <button
+              class="main-cont-info-price-btn"
+              (click)="addProduct(product)"
+            >
               <mat-icon>add_shopping_cart</mat-icon>
             </button>
           </div>
+          <ng-shop-star-rating [feedbackRate]="product.rating | rate">
+          </ng-shop-star-rating>
         </div>
         <div class="main-cont-description">
           <div class="main-cont-description-descr">
@@ -32,36 +34,27 @@
       <div class="main-comments">
         <div class="main-comments-header">
           <span>Отзывы покупателей</span>
-          <button class="main-comments-header-btn">
+          <button (click)="addFeedback()" class="main-comments-header-btn">
             Написать отзыв
           </button>
         </div>
 
-        <div class="main-comments-review">
-          <p>Customer Name</p>
+        <div
+          *ngFor="let feedback of (product$ | async)?.feedbacks"
+          class="main-comments-review"
+        >
           <div class="main-comments-review-text">
-            <div class="main-comments-review-text-stars">
-              <mat-icon>star</mat-icon>
-              <mat-icon>star</mat-icon>
-              <mat-icon>star</mat-icon>
-              <mat-icon>star</mat-icon>
-              <mat-icon class="grey-star">star_border</mat-icon>
-            </div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-
+            <ng-shop-star-rating
+              [feedbackRate]="feedback.rate | rate"
+            ></ng-shop-star-rating>
+            {{ feedback.description }}
             <ul class="main-comments-review-text-pluses">
               Достоинства:
-              <li>Lorem ipsum</li>
+              <li>{{ feedback.advantages }}</li>
             </ul>
             <ul class="main-comments-review-text-minuses">
               Недостатки:
-              <li>Lorem ipsum</li>
+              <li>{{ feedback.limitations }}</li>
             </ul>
           </div>
         </div>

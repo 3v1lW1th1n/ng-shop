@@ -1,5 +1,4 @@
-import { ActionReducerMap } from '@ngrx/store';
-import { ICategoryState } from './categories.reducer';
+import { ICategoryState, reducerCategories } from './categories.reducer';
 import { routerReducer, RouterStateSerializer } from '@ngrx/router-store';
 import {
   ActivatedRouteSnapshot,
@@ -7,13 +6,19 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
-// tslint:disable-next-line:no-empty-interface
+import { ICartProduct, reducerCart } from './cart.reducer';
+import { ActionReducerMap } from '@ngrx/store';
+import { EntityState } from '@ngrx/entity/src';
 export interface IStore {
   categories: ICategoryState;
+  cart: EntityState<ICartProduct>;
   routerReducer: typeof routerReducer;
 }
 
-export const reducers: ActionReducerMap<any> = {};
+export const reducers: ActionReducerMap<any> = {
+  categories: reducerCategories,
+  cart: reducerCart,
+};
 
 export interface IRouterStateUrl {
   url: string;

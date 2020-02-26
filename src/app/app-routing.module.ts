@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CartGuard } from '@shared/services/cart.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,18 @@ const routes: Routes = [
       import('./content/products/products.module').then(
         mod => mod.ProductsModule,
       ),
+    data: {
+      state: 'products',
+    },
+  },
+  {
+    path: 'cart',
+    loadChildren: () =>
+      import('./content/cart/cart.module').then(mod => mod.CartModule),
+    canActivate: [CartGuard],
+    data: {
+      state: 'cart',
+    },
   },
   {
     path: '**',
@@ -24,4 +37,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

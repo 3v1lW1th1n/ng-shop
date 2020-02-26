@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ModalModule } from './modal/modal.module';
-import { OneProductReviewModalComponent } from './content/products/one-product/one-product-review-modal/one-product-review-modal.component';
 import { StoreModule } from '@ngrx/store';
 import { CustomRouterSerializer, reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
@@ -13,16 +12,18 @@ import { environment } from '@env/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { effects } from './store/effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, OneProductReviewModalComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ModalModule.forRoot(),
     SharedModule.forRoot(),
     EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers, {
-      // metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,

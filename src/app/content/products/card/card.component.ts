@@ -8,9 +8,12 @@ import {
 import { CardConfirmModalComponent } from './card-confirm-modal/card-confirm-modal.component';
 import { ModalService } from '../../../modal/modal.service';
 import { IProduct } from '../store/reducers/products.reducer';
+import { Store } from '@ngrx/store';
+import { IStore } from 'src/app/store/reducers';
+import { addProductToCart } from 'src/app/store/actions/cart.actions';
 
 @Component({
-  selector: 'app-card',
+  selector: 'ng-shop-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.sass'],
 })
@@ -25,6 +28,7 @@ export class CardComponent {
     private _modalService: ModalService,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _injector: Injector,
+    private _store: Store<IStore>,
   ) {}
 
   public addProduct(product: IProduct): void {
@@ -35,6 +39,7 @@ export class CardComponent {
       context: {
         product: { ...product },
         save: () => {
+          this._store.dispatch(addProductToCart({ product }));
           this._modalService.close();
         },
         close: () => {

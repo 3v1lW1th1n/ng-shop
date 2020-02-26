@@ -3,7 +3,7 @@ import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-categories',
+  selector: 'ng-shop-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.sass'],
   providers: [

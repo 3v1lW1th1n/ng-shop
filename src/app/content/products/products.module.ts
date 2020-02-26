@@ -9,8 +9,9 @@ import { ProductsComponent } from './products.component';
 import { ProductsService } from './products.service';
 import { ProductsEffects } from './store/effects/products.effect';
 import { reducer } from './store/reducers/products.reducer';
-import { reducerCategories } from 'src/app/store/reducers/categories.reducer';
 import { CategoriesComponent } from './categories/categories.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselDirective } from './carousel/carousel.directive';
 
 @NgModule({
   declarations: [
@@ -18,14 +19,16 @@ import { CategoriesComponent } from './categories/categories.component';
     ProductsComponent,
     CardConfirmModalComponent,
     CategoriesComponent,
+    CarouselDirective,
+    CarouselComponent,
   ],
   imports: [
     SharedModule,
     ProductsRoutingModule,
     StoreModule.forFeature('products', reducer),
     EffectsModule.forFeature([ProductsEffects]),
-    StoreModule.forFeature('categories', reducerCategories),
   ],
+  entryComponents: [CardConfirmModalComponent],
   providers: [ProductsService],
 })
 export class ProductsModule {}

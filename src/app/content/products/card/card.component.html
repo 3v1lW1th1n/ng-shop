@@ -13,19 +13,18 @@
       </a>
     </h5>
     <div class="rate">
-      <i class="icon-star checked"></i><i class="icon-star checked"></i
-      ><i class="icon-star checked"></i><i class="icon-star checked"></i
-      ><i class="icon-star"></i>
+      <ng-shop-star-rating
+        [feedbackRate]="product.rating | rate"
+      ></ng-shop-star-rating>
 
       <span class="rate-amount ml-2"></span>
+      <mat-icon class="product-add-to-cart" (click)="addProduct(product)"
+        >add_shopping_cart</mat-icon
+      >
     </div>
 
     <p class="card-text price-text">
       <strong>€ {{ product.price }}</strong>
     </p>
-
-    <button class="product-add-to-cart" (click)="addProduct(product)">
-      Add to cart
-    </button>
   </div>
 </div>

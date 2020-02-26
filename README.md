@@ -1,27 +1,49 @@
-# Shop
+#Окружение и сборка
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.0-rc.2.
+- custom webpack
 
-## Development server
+## Directives
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Carousel `done`
+- Carousel directive animation `done`
+- tooltip 
+- ngFor trackBy `done`
 
-## Code scaffolding
+## Pipes
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- rating pipe 
+- 
 
-## Build
+## DI
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- http requests
+- interceptors
+- modal window and dynamic component
 
-## Running unit tests
+## Routing
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- working with parameters and queries `done`
+- Resolve data `done`
+- breadcrumbs
+- Lazy routes `done`
+- Custom preload strategy
+- Router animation `done`
+- Guards
 
-## Running end-to-end tests
+## Forms
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- Template Driven and Reactive forms
+- Validators
+- AsyncValidators
+- Custom form control `done`
 
-## Further help
+## RxJS
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Router `done`
+- Meta Reducers
+- Initial Load from local storage
+- Entity `done`
+- Selectors `done`
+
+## Tests
+
