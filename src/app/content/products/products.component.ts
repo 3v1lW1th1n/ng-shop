@@ -1,5 +1,4 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ICategory } from './../../store/reducers/categories.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
@@ -8,8 +7,12 @@ import { Store } from '@ngrx/store';
 import { getCategoriesPending } from 'src/app/store/actions/categories.actions';
 import { ActivatedRoute } from '@angular/router';
 import { debounceTime, map, skip, withLatestFrom } from 'rxjs/operators';
-import { getProductsPending, removeFromStateProducts } from './store/actions/products.actions';
+import {
+  getProductsPending,
+  removeFromStateProducts,
+} from './store/actions/products.actions';
 import { ProductsService } from './products.service';
+import { ICategory } from '@root-store/reducers/categories.reducer';
 
 @Component({
   selector: 'ng-shop-products',
@@ -17,12 +20,15 @@ import { ProductsService } from './products.service';
   styleUrls: ['./products.component.sass'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
+  public products$: Observable<IProduct[]> = this.store.select(
+    'products',
+    'items',
+  );
 
-  public products$: Observable<IProduct[]> = this.store
-    .select('products', 'items');
-
-  public categories$: Observable<ICategory[]> = this.store
-    .select('categories', 'items');
+  public categories$: Observable<ICategory[]> = this.store.select(
+    'categories',
+    'items',
+  );
 
   public filterForm: FormGroup = this.fb.group({
     text: [''],
@@ -36,16 +42,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private productsService: ProductsService,
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     const filterSequence$ = this.filterForm.valueChanges.pipe(
       skip(1),
       debounceTime(300),
-      map((params) => ({ ...params, page: 1 })),
+      map(params => ({ ...params, page: 1 })),
     );
-    this.productsService.prepareQuery(filterSequence$)
+    this.productsService
+      .prepareQuery(filterSequence$)
       .subscribe((searchQuery: any) => {
         this.store.dispatch(getProductsPending(searchQuery));
       });
@@ -54,7 +60,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       withLatestFrom(this.filterForm.valueChanges),
       map(([page, params]: any[]) => ({ ...params, page })),
     );
-    this.productsService.prepareQuery(pagingSequence$)
+    this.productsService
+      .prepareQuery(pagingSequence$)
       .subscribe((searchQuery: any) => {
         this.store.dispatch(getProductsPending(searchQuery));
       });

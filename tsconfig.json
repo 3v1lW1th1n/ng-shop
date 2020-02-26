@@ -20,7 +20,9 @@
       "@shared/*": ["src/app/shared/*"],
       "@modal/*": ["src/app/modal/*"],
       "@env/*": ["src/environments/*"],
-      "@product-reducer/*": ["src/app/content/products/store/reducers/*"]
+      "@product-store/*": ["src/app/content/products/store/*"],
+      "@category-store/*": ["src/app/content/category/store/*"],
+      "@root-store/*": ["src/app/store/*"]
     }
   },
   "angularCompilerOptions": {

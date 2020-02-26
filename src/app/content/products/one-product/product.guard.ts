@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { getProductSuccess } from '../store/actions/products.actions';
 import { go } from 'src/app/store/actions/router.actions';
-import { IProduct } from '@product-reducer/products.reducer';
+import { IProduct } from '@product-store/reducers/products.reducer';
 
 @Injectable()
 export class ProductGuard implements CanActivate {

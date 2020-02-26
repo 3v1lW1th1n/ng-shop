@@ -1,7 +1,7 @@
-import { ICategory } from './../../store/reducers/categories.reducer';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ICategory } from '@root-store/reducers/categories.reducer';
 
 @Injectable()
 export class CategoriesService {
