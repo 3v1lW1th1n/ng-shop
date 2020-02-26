@@ -5,7 +5,10 @@ import { Observable, of } from 'rxjs';
 
 import { switchMap, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { selectProducts } from '@root-store/reducers/cart.reducer';
+import {
+  selectProducts,
+  ICartProduct,
+} from '@root-store/reducers/cart.reducer';
 
 @Injectable()
 export class CartGuard implements CanActivate {

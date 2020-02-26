@@ -9,6 +9,7 @@ import {
   incrementProductInCart,
   decrementProductInCart,
   setCountProductInCart,
+  removeProductFromCart,
 } from 'src/app/store/actions/cart.actions';
 import { IStore } from 'src/app/store/reducers';
 
