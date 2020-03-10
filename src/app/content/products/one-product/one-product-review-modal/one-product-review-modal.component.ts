@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IFeedback } from '@product-store/reducers/products.reducer';
+import { RatingComponent } from './rating/rating.component';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'ng-shop-one-product-review-modal',
@@ -15,7 +18,9 @@ export class OneProductReviewModalComponent {
     }
     this.feedbackForm.patchValue(value);
   }
-  constructor(private fb: FormBuilder) {}
+
+  constructor(private fb: FormBuilder) {
+  }
 
   public feedbackForm: FormGroup = this.fb.group({
     advantages: ['', [Validators.required, Validators.minLength(10)]],
@@ -30,4 +35,13 @@ export class OneProductReviewModalComponent {
   public getField(name: string) {
     return this.feedbackForm.get(name);
   }
+}
+
+@NgModule({
+  declarations: [OneProductReviewModalComponent, RatingComponent],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
+})
+// @ts-ignore
+class OneProductReviewModalModule {
+
 }

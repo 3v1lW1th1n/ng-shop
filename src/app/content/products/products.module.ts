@@ -1,6 +1,5 @@
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { CardConfirmModalComponent } from './card/card-confirm-modal/card-confirm-modal.component';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { ProductsRoutingModule } from './products-routing.module';
@@ -17,7 +16,6 @@ import { CarouselDirective } from './carousel/carousel.directive';
   declarations: [
     CardComponent,
     ProductsComponent,
-    CardConfirmModalComponent,
     CategoriesComponent,
     CarouselDirective,
     CarouselComponent,
@@ -28,7 +26,6 @@ import { CarouselDirective } from './carousel/carousel.directive';
     StoreModule.forFeature('products', reducer),
     EffectsModule.forFeature([ProductsEffects]),
   ],
-  entryComponents: [CardConfirmModalComponent],
   providers: [ProductsService],
 })
 export class ProductsModule {}

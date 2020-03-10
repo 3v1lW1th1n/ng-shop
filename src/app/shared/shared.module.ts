@@ -1,5 +1,5 @@
 import { LocalStorageService } from './services/localStorage.service';
-import { RatePipe } from './pipes/rate.pipes';
+import { RatePipe } from './pipes/rate.pipe';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
 import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
