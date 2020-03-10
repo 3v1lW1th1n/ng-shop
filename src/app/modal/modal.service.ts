@@ -7,8 +7,6 @@ export class ModalService {
 
   public open(componentObj: {
     component: any;
-    resolver: any;
-    injector: any;
     context: any;
   }): void {
     this._modalSequence$$.next(componentObj);

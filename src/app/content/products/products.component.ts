@@ -13,6 +13,8 @@ import {
 } from './store/actions/products.actions';
 import { ProductsService } from './products.service';
 import { ICategory } from '@root-store/reducers/categories.reducer';
+import { addProductToCart } from '@root-store/actions/cart.actions';
+import { ModalService } from '@modal/modal.service';
 
 @Component({
   selector: 'ng-shop-products',
@@ -42,6 +44,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private productsService: ProductsService,
+    private _modalService: ModalService,
   ) {}
 
   public ngOnInit(): void {
@@ -77,5 +80,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.store.dispatch(removeFromStateProducts());
+  }
+
+  public async addProduct(product: IProduct): Promise<void> {
+    const component = await import('./card/card-confirm-modal/card-confirm-modal.component')
+    this._modalService.open({
+      component: component.CardConfirmModalComponent,
+      context: {
+        product: { ...product },
+        save: () => {
+          this.store.dispatch(addProductToCart({ product }));
+          this._modalService.close();
+        },
+        close: () => {
+          this._modalService.close();
+        },
+      },
+    });
   }
 }
