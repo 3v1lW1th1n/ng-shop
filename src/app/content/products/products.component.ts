@@ -83,7 +83,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public async addProduct(product: IProduct): Promise<void> {
-    const component = await import('./card/card-confirm-modal/card-confirm-modal.component')
+    const component = await import(
+      './card/card-confirm-modal/card-confirm-modal.component'
+    );
     this._modalService.open({
       component: component.CardConfirmModalComponent,
       context: {

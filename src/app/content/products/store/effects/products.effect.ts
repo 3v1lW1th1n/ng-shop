@@ -66,6 +66,7 @@ export class ProductsEffects {
       switchMap(({ type, ...search }) => {
         return this.productsService.getProducts(search).pipe(
           mergeMap((products: IProduct[]) => {
+            const { page, ...searchWithoutPage } = search;
             if (products.length === 0) {
               return [
                 go({
@@ -77,10 +78,10 @@ export class ProductsEffects {
             return [
               go({
                 path: [],
-                query: search,
+                query: searchWithoutPage,
                 extras: { queryParamsHandling: null },
               }),
-              search.page === 1
+              page === 1
                 ? getProductsSuccess({ products })
                 : getProductsPagingSuccess({ products }),
             ];
