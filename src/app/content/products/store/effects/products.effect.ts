@@ -67,14 +67,6 @@ export class ProductsEffects {
         return this.productsService.getProducts(search).pipe(
           mergeMap((products: IProduct[]) => {
             const { page, ...searchWithoutPage } = search;
-            if (products.length === 0) {
-              return [
-                go({
-                  path: [],
-                  extras: { queryParamsHandling: 'preserve' },
-                }),
-              ];
-            }
             return [
               go({
                 path: [],
