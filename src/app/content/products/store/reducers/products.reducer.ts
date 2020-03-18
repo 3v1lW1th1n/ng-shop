@@ -7,6 +7,7 @@ import {
   getProductSuccess,
   getProductsPagingSuccess,
   removeFromStateProducts,
+  clearProduct,
 } from '../actions/products.actions';
 
 export interface IProductState {
@@ -32,24 +33,18 @@ export interface IProductImage {
 
 export interface IProduct {
   _id: string;
-  name: string;
-  description: string;
+  name?: string;
+  description?: string;
   feedbacks?: IFeedback;
-  price: number;
-  status: boolean;
+  price?: number;
+  status?: boolean;
   images?: IProductImage[] | undefined;
   rating?: number | undefined;
 }
 
 const productsReducer = createReducer(
   {
-    item: {
-      _id: '',
-      description: '',
-      name: '',
-      price: 0,
-      status: false,
-    },
+    item: { _id: '' },
     items: [],
     loading: false,
   },
@@ -84,6 +79,11 @@ const productsReducer = createReducer(
   on(getProductsError, (state: IProductState) => ({
     ...state,
     loading: true,
+  })),
+  on(clearProduct, (state: IProductState) => ({
+    ...state,
+    loading: false,
+    item: { _id: '' },
   })),
 );
 
