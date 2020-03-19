@@ -22,6 +22,7 @@ import { ModalService } from '@modal/modal.service';
   styleUrls: ['./products.component.sass'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
+  public page: number = 1;
   public products$: Observable<IProduct[]> = this.store.select(
     'products',
     'items',
@@ -74,8 +75,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public scroll(isInit: boolean) {
-    let { page = 1 } = this.activatedRoute.snapshot.queryParams;
-    this.pageSequence$$.next(isInit ? page : ++page);
+    this.pageSequence$$.next(isInit ? this.page : ++this.page);
   }
 
   public ngOnDestroy(): void {

@@ -3,7 +3,7 @@ import { IProduct, IFeedback } from '../reducers/products.reducer';
 
 export const getProductsPending = createAction(
   '[Products] Get products pending',
-  props<{ text?: string; subcategory?: string, page: number }>(),
+  props<{ text?: string; subcategory?: string; page: number }>(),
 );
 
 export const getProductsSuccess = createAction(
@@ -35,3 +35,5 @@ export const createFeedbackPending = createAction(
 export const createFeedbackSuccess = createAction(
   '[Feedback] Create feedback success',
 );
+
+export const clearProduct = createAction('[Product] Clear product');
