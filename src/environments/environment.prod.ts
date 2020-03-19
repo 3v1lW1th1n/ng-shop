@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:8090',
+  baseUrl: 'https://ng-course-api.herokuapp.com',
 };
